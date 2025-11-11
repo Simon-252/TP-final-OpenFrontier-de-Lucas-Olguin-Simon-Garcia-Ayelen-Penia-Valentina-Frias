@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Paso Internacional Los Libertadores",
+        "lat": -32.82724,
+        "lng": -70.09213,
+        "address": "Paso Internacional Los Libertadores, Los Andes, Valparaíso, Chile",
+        "iconType": "frontera"
+    },
+    {
+        "name": "Posada Del Glaciar",
+        "lat": -32.8142288,
+        "lng": -70.0482002,
+        "address": "Ruta Nacional 7, M5545 Las Cuevas, Mendoza, Argentina",
+        "iconType": "hotel"
+    },
+    {
+        "name": "Ayelen Hotel de Montana",
+        "lat": -32.8420898,
+        "lng": -69.8383776,
+        "address": "Ruta 7, km 1212, Los Penitentes, Mendoza, Argentina",
+        "iconType": "hotel"
+    }
+]

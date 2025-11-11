@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    
+    <style>
+        body {
+            /* Fondo ligeramente gris claro para contraste */
+            background-color: #f8f9fa; 
+        }
+        .register-container {
+            /* Sombra y esquinas redondeadas para el "card" */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100"> 
+    
+    <div class="position-absolute top-0 start-0 m-3">
+        <a href="/" class="btn btn-outline-secondary btn-sm">← Volver al inicio</a>
+    </div>
+
+    <div class="card p-5 register-container" style="width: 400px;"> 
+        <h3 class="text-center mb-4 text-success">Crear Cuenta</h3>
+        
+        <form id="registerForm"> 
+            
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username" required>
+            </div>
+            
+            <div class="mb-3">
+                <input type="email" class="form-control" placeholder="Correo Electrónico" name="email" required>
+            </div>
+            
+            <div class="mb-3">
+                <input type="password" class="form-control" placeholder="Contraseña" name="password" required>
+            </div>
+            
+            <div class="mb-4">
+                <input type="tel" class="form-control" placeholder="Número de Teléfono" name="phone" required>
+            </div>
+            
+            <div class="mb-4">
+                <select class="form-control" name="role" required> 
+                    <option value="user" selected>Usuario Estándar</option>
+                    <option value="admin">Administrador (Solo para debug)</option>
+                </select>
+                </div>
+
+            <button class="btn btn-success w-100 fw-bold" type="submit">
+                Registrarse
+            </button> 
+        </form>
+        
+        <hr class="my-3">
+        
+        <p class="mt-2 text-center text-muted">
+            ¿Ya tienes cuenta? <a href="/login" class="text-decoration-none text-success">Iniciar Sesión</a>
+        </p>
+    </div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    
+    // Recolección de datos
+    const data = {
+        username: form.username.value,
+        email: form.email.value,
+        password: form.password.value,
+        phone: form.phone.value,
+        // Si no quieres que el usuario elija, el valor del rol se podría fijar aquí a 'user'
+        role: form.role.value 
+    };
+
+    const res = await fetch("/api/auth/register", { 
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+    
+    if (res.ok) {
+        if (result.token) {
+            localStorage.setItem('token', result.token);
+        }
+        
+        alert("¡Registro exitoso! Accediendo a la aplicación.");
+        
+        // Flask ya devuelve la URL de redirección (ej: '/')
+        window.location.href = result.redirect_url || '/'; 
+        
+    } else {
+        alert('Error en el registro: ' + result.message);
+    }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/logout_handler.js') }}"></script>
+
+</body>
+</html>

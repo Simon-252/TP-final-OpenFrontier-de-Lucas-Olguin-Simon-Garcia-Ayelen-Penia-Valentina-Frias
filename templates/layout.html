@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenFrontier</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/layout.css')}}">
+</head>
+<body>
+    
+    <div class="main-container">
+        
+        <div id="image-container">
+            <img id="pass-image" src="{{ url_for('static', filename='images/default_pass.jpg') }}" alt="Ubicación del Paso">
+        </div>
+        
+        <div id="pass-status-container">
+            <h2 id="pass-status-text" class="status-loading">Cargando Estado...</h2>
+        </div>
+        <div id="pass-info-container"> 
+            <p id="pass-schedule" class="info-text">Horario de atención: N/A</p>
+            <p id="pass-updated-time" class="info-text">Última Actualización: N/A</p>
+        </div>
+
+                <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+                <div class="footer-info">
+            <h3>De Simon Garcia - Ayelen Peña - Lucas Olguin - Valentina Frias</h3>
+            <p><a href="{{ url_for('about.about_page') }}">Sobre este proyecto</a></p>
+        </div>
+
+    </div>
+
+    <nav id="bottom-nav">
+        <div id="unauthenticated-options">
+            <a href="/login" class="nav-button">Iniciar Sesión</a>
+            <a href="/register" class="nav-button">Registrarse</a>
+                
+        </div>
+
+        <button id="theme-toggle" class="nav-button">
+            Modo Oscuro
+        </button>
+
+        <div id="authenticated-options" style="display: none;"> 
+            <a href="/mapa" class="nav-button">Ver Mapa</a>
+            <a href="/notifications" class="nav-button">Notificaciones</a>
+            <a href="/profile" class="nav-button">Perfil</a>
+            <a href="/dashboard" id="admin-dashboard-link" class="nav-button" style="display:none;">Lista de Usuarios</a>
+            <a href="https://www.argentina.gob.ar/interior/migraciones/entrada-y-salida-del-pais"
+                target="_blank"
+                class="nav-button nav-docs">
+                Documentación para cruzar
+                </a>
+            <button id="logoutBtn" class="nav-button button-danger">Cerrar sesión</button>
+
+        </div>
+    </nav>
+    
+    <script src="{{ url_for('static', filename='js/nav_handler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/theme_handler.js') }}"></script>
+    
+    <script>
+        // CÓDIGO DE FETCCH STATUS
+        const passStatusText = document.getElementById('pass-status-text');
+        const passImage = document.getElementById('pass-image');
+        const passSchedule = document.getElementById('pass-schedule');
+        const passUpdatedTime = document.getElementById('pass-updated-time');
+        
+        // Función para cambiar clases y colores según el estado
+        function updateStatusDisplay(estado) {
+            passStatusText.className = ''; // Limpia todas las clases
+            let colorClass = 'status-default'; 
+            
+            if (estado.toLowerCase().includes('abierto') || estado.toLowerCase().includes('habilitado')) {
+                colorClass = 'status-success'; // Clase para verde/éxito
+            } else if (estado.toLowerCase().includes('cerrado')) {
+                colorClass = 'status-danger'; // Clase para rojo/peligro
+            } else if (estado.toLowerCase().includes('desconocido') || estado.toLowerCase().includes('error')) {
+                colorClass = 'status-warning'; // Clase para amarillo/advertencia
+            }
+            passStatusText.classList.add(colorClass);
+        }
+
+        // Función principal para obtener los datos
+        function fetchPassStatus() {
+            // Llama al endpoint público que no requiere autenticación
+            fetch('/paso/public_api')
+                .then(res => res.json())
+                .then(data => {
+                    // 1. Mostrar el ESTADO
+                    passStatusText.innerText = `Paso ${data.estado}`;
+                    updateStatusDisplay(data.estado);
+                    
+                    // 2. Mostrar HORARIO (usando horario_atencion)
+                    const horario = data.horario_atencion || data.horario || 'N/A'; 
+                    passSchedule.innerText = `Horario de atención: ${horario}`;
+
+                    // 3. Mostrar TIEMPO DE ACTUALIZACIÓN (usando actualizado)
+                    // Nota: Asumimos que data.actualizado ya trae el texto "Actualizado hace..."
+                    passUpdatedTime.innerText = `Última Actualización: ${data.actualizado}`;
+                    
+                    // 4. Cambiar la IMAGEN
+                    const imageUrl = `{{ url_for('static', filename='images/${data.image_filename}') }}`;
+                    passImage.src = imageUrl;
+
+                })
+                .catch(err => {
+                    console.error("Error al obtener estado del paso:", err);
+                    passStatusText.innerText = "Error al conectar con la API.";
+                    updateStatusDisplay("Error");
+                    passSchedule.innerText = 'Horario de atención: No disponible';
+                    passUpdatedTime.innerText = 'Última Actualización: No disponible';
+                });
+        }
+        
+        // Ejecutar la función al cargar la página
+        fetchPassStatus();
+        
+        // Opcional: Actualizar el estado cada 5 minutos
+        // setInterval(fetchPassStatus, 300000); 
+        
+    </script>
+<script src="{{ url_for('static', filename='js/logout_handler.js') }}"></script>
+</body>
+</html>
