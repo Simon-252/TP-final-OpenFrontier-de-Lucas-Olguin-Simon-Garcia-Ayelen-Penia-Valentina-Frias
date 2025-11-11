@@ -20,4 +20,4 @@ schedule
 requests
 Flask-APScheduler==1.13.1
 PyJWT
-Flask-Testing pytest pytest-flask
+Flask-Testing
