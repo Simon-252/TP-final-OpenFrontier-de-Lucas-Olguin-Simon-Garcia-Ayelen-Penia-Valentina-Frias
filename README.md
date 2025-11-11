@@ -119,6 +119,7 @@ MYSQL_DB_NAME=<nombre_de_la_base_de_datos>
 
 
 SECRET_KEY="clave secreta"
+
 WEATHER_API_KEY="api key"
 
 
