@@ -1,4 +1,4 @@
-<img width="1211" height="781" alt="image" src="https://github.com/user-attachments/assets/2ef64768-13c2-4527-b1a1-d8354437e1e4" /># TP-final-OpenFrontier-de-Lucas-Olguin-Simon-Garcia-Ayelen-Penia-Valentina-Frias
+Simon-Garcia-Ayelen-Penia-Valentina-Frias
 # 🗻 OpenFrontier
 OpenFrontier es una aplicación web desarrollada con **Flask (Python)** que proporciona información **en tiempo real** sobre el estado del **Paso Internacional Cristo Redentor**, principal conexión terrestre entre **Mendoza (Argentina)** y **Chile**.  
 
@@ -106,16 +106,17 @@ export FLASK_ENV=development
 Configuración de la base de datos
 Antes de ejecutar la aplicación, debes configurar las siguientes variables de entorno:
 
-MYSQL_USER=<tu_usuario>
-MYSQL_PASSWORD=<tu_contraseña>
-MYSQL_DB=<nombre_de_la_base_de_datos>
-MYSQL_HOST=<host_de_mysql>
 
 MYSQL_USER=<tu_usuario>
+
 MYSQL_PASSWORD=<tu_contraseña>
+
 MYSQL_HOST=<host_de_mysql>
+
 MYSQL_PORT=<puerto_de_la_base_de_datos>
+
 MYSQL_DB_NAME=<nombre_de_la_base_de_datos>
+
 
 SECRET_KEY="clave secreta"
 WEATHER_API_KEY="api key"
@@ -129,6 +130,7 @@ if __name__ == "__main__":
         print("")
         # Esta llamada solo se ejecuta cuando el script se inicia directamente, NO en el import de pytest
         #actualizar_estado() 
+        
 
 🧭 Funcionalidades principales
 | Módulo                          | Descripción                                                              |
