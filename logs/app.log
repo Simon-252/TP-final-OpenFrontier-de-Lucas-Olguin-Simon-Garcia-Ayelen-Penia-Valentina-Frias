@@ -162,3 +162,6 @@ INFO: 2025-11-11 16:25:52,455 - app:125 - 🔧 Ejecutando job de actualización 
 INFO: 2025-11-11 16:35:52,458 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
 INFO: 2025-11-11 16:35:52,458 - app:125 - 🔧 Ejecutando job de actualización de clima.
 INFO: 2025-11-11 16:45:52,451 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-11 17:53:27,459 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 17:53:37,787 - app:113 - 🚪 Usuario cerró sesión: simon (ID: 8d35f0c5-42a2-4c2b-9de9-4f2465793dbc)
+INFO: 2025-11-11 17:53:43,735 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 8d35f0c5-42a2-4c2b-9de9-4f2465793dbc (simon)
