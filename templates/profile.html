@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+    <style>
+        /* CSS para el diseño de la página de perfil */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ebee; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .profile-container {
+            display: flex;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 95%;
+        }
+
+        /* Tarjeta de Información Estática (Columna Izquierda) */
+        .profile-info-card {
+            flex: 1; 
+            /* CLAVE: Cambia el padding para dejar espacio a la barra superior */
+            padding: 0 20px 20px 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            min-width: 250px;
+            /* Asegura que el contenido respete los bordes de la tarjeta */
+            overflow: hidden; 
+        }
+        
+        /* Barra de botones en la parte superior */
+        .profile-actions-bar {
+            display: flex;
+            /* Coloca los botones a la izquierda y derecha extremas */
+            justify-content: space-between; 
+            align-items: center;
+            
+            /* CLAVE: Margen negativo para empujar la barra a los bordes de la tarjeta */
+            margin: 0px -20px 20px -20px; 
+            padding: 10px 20px;
+            background-color: #f0f0f0; 
+            /* Para que la barra tome los bordes redondeados superiores */
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom: 1px solid #ddd; 
+        }
+
+        /* Estilo para los botones dentro de la barra */
+        .profile-action-btn {
+            padding: 6px 10px;
+            font-size: 0.8em; 
+            font-weight: bold;
+            text-decoration: none;
+            line-height: 1.5;
+            flex-shrink: 0; 
+        }
+
+        .profile-avatar {
+            /* Ajuste de margen para separarse de la nueva barra */
+            margin-top: 15px; 
+            margin-bottom: 20px;
+        }
+        .profile-avatar i {
+            font-size: 80px;
+            color: #007bff;
+        }
+        
+        .profile-info-card h2 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .profile-role {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-details {
+            text-align: left;
+            padding-top: 15px;
+        }
+        .info-details p {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        /* Badges de Estado */
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .status-active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-suspended {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Panel de Configuraciones (Columna Derecha) */
+        .profile-settings-panel {
+            flex: 2; 
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .settings-section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .settings-section h3 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .settings-section input[type="text"],
+        .settings-section input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            flex-grow: 1;
+            width: 100%;
+            box-sizing: border-box; 
+            margin-bottom: 10px;
+        }
+        
+        .settings-section form:not(.input-group) input {
+            width: 100%;
+        }
+
+        .current-value {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .button-danger {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .primary-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .danger-button:hover { background-color: #c82333; }
+        .primary-button:hover { background-color: #0056b3; }
+
+        .account-management button {
+            margin-right: 10px;
+        }
+        
+        /* Responsive: Colapsar a una sola columna en pantallas pequeñas */
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+                gap: 15px;
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-info-card"> 
+            <div class="profile-actions-bar"> 
+                <a href="/" class="profile-action-btn primary-button">Ir a Principal</a> 
+                <button id="logoutBtn" class="nav-button button-danger">Cerrar sesión</button>
+
+            </div>
+            
+            <div class="profile-main-content">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i> 
+                </div>
+                <h2>{{ user.username }}</h2>
+                <p class="profile-role">Rol: <span>{{ user.role | capitalize }}</span></p>
+
+                <div class="info-details">
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p>
+                        <strong>Teléfono:</strong> 
+                        <span id="staticPhoneNumber">{{ user.phone if user.phone else 'No definido' }}</span>
+                    </p>
+                    <p><strong>ID:</strong> {{ user.id }}</p>
+                    <p>
+                        <strong>Estado:</strong> 
+                        <span id="accountStatus" class="status-badge status-{% if user.is_active %}active{% else %}suspended{% endif %}">
+                            {% if user.is_active %}Activa{% else %}Suspendida{% endif %}
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-settings-panel">
+            
+            <div class="settings-section">
+                <h3>Cambiar Nombre de Usuario</h3>
+                <p>Nombre actual: <span id="currentUsername" class="current-value">{{ user.username }}</span></p>
+                <form id="updateUsernameForm" class="input-group">
+                    <input type="text" id="newUsername" placeholder="Nuevo Nombre de Usuario" required>
+                    <button type="submit" class="primary-button">Actualizar</button>
+                </form>
+            </div>
+
+            <div class="settings-section">
+                <h3>Editar Teléfono</h3>
+                <p>Teléfono actual: <span id="currentPhoneNumber" class="current-value">{{ user.phone if user.phone else 'No definido' }}</span></p>
+                <form id="updatePhoneForm" class="input-group">
+                    <input type="text" id="newPhoneNumber" placeholder="Nuevo Número de Teléfono" pattern="[0-9]{7,15}" title="Ingresa un número válido de 7 a 15 dígitos." required>
+                    <button type="submit" class="primary-button">Guardar Teléfono</button>
+                </form>
+            </div>
+
+            <div class="settings-section">
+                <h3>Cambiar Contraseña</h3>
+                <form id="updatePasswordForm">
+                    <input type="password" id="oldPassword" placeholder="Contraseña Actual" required>
+                    <input type="password" id="newPassword" placeholder="Nueva Contraseña" required>
+                    <input type="password" id="confirmNewPassword" placeholder="Confirmar Nueva Contraseña" required>
+                    <button type="submit" class="primary-button">Cambiar Contraseña</button>
+                </form>
+            </div>
+
+            <div class="settings-section">
+                <h3>Preferencias de Notificación</h3>
+                <p>Estado actual: 
+                    <span id="notificationStatus" class="current-value">
+                        {% if user.notifications_enabled %}Activadas{% else %}Desactivadas{% endif %}
+                    </span>
+                </p>
+    
+                {# 💡 Lógica de Jinja para Admin #}
+                {% if user.role == 'admin' %}
+                    <button class="primary-button" disabled>
+                        Notificaciones obligatorias (Admin)
+                    </button>
+                    <p style="color: #dc3545; font-size: 0.9em; margin-top: 10px;">
+                        El rol de administrador requiere que las notificaciones permanezcan activas.
+                    </p>
+                {% else %}
+                    <button id="toggleNotificationsBtn" class="primary-button">
+                        {% if user.notifications_enabled %}Desactivar Notificaciones{% else %}Activar Notificaciones{% endif %}
+                    </button>
+                {% endif %}
+            </div>
+            
+            <div class="settings-section account-management">
+                <h3>Gestión de Cuenta</h3>
+                
+                <button id="toggleStatusBtn" class="danger-button status-toggle-btn">
+                    {% if user.is_active %}Suspender Cuenta{% else %}Reactivar Cuenta{% endif %}
+                </button>
+                
+                <button id="deleteAccountBtn" class="danger-button">Eliminar Cuenta</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Helper para obtener el token (asumiendo que está en scripts.js)
+    const getToken = () => localStorage.getItem('token');
+    
+    // Función central de envío para las APIs
+    async function sendApiRequest(url, method, body = null) {
+        const token = getToken();
+        if (!token) {
+            alert("No autenticado. Por favor, inicia sesión.");
+            window.location.href = "/login"; 
+            return null;
+        }
+
+        const opts = {
+            method: method,
+            headers: { 
+                "Content-Type": "application/json", 
+                "Authorization": `Bearer ${token}`
+            },
+        };
+        if (body) {
+            opts.body = JSON.stringify(body);
+        }
+
+        try {
+            const res = await fetch(url, opts);
+            const result = await res.json().catch(() => ({ message: res.statusText || "Error desconocido" }));
+            
+            if (!res.ok) {
+                alert(`Error: ${result.message}`);
+                return null;
+            }
+            return result;
+        } catch (err) {
+            alert("Error de red. Intenta nuevamente.");
+            return null;
+        }
+    }
+
+    // =========================================================================
+    // 1. CAMBIAR NOMBRE DE USUARIO
+    // =========================================================================
+    document.getElementById('updateUsernameForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const newUsername = document.getElementById('newUsername').value;
+
+        const result = await sendApiRequest("/api/profile", "PUT", { username: newUsername });
+        
+        if (result) {
+            alert(result.message);
+            // 1. Reemplazar el token
+            localStorage.setItem("token", result.token); 
+            
+            // 2. Actualizar la interfaz (Nombre de usuario en la página y en el h2)
+            document.getElementById('currentUsername').textContent = result.username;
+            document.querySelector('.profile-info-card h2').textContent = result.username;
+            document.getElementById('newUsername').value = ''; 
+            
+            // 3. Opcional: Actualizar el nombre en el menú de navegación (si existe)
+            const userDisplay = document.getElementById('user-display'); 
+            if (userDisplay) {
+                userDisplay.textContent = result.username; 
+            } 
+        }
+    });
+
+    // =========================================================================
+    // 1.b. EDITAR NÚMERO DE TELÉFONO
+    // =========================================================================
+    document.getElementById('updatePhoneForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const newPhoneNumber = document.getElementById('newPhoneNumber').value;
+
+        const result = await sendApiRequest("/api/profile", "PUT", { phone: newPhoneNumber });
+        
+        if (result) {
+            alert(result.message);
+            
+            // 1. Reemplazar el token
+            localStorage.setItem("token", result.token); 
+            
+            // 2. Determinar valor a mostrar
+            const displayValue = result.phone || 'No definido'; 
+
+            // 3. Actualizar la interfaz en el formulario de edición (currentPhoneNumber)
+            document.getElementById('currentPhoneNumber').textContent = displayValue;
+            document.getElementById('newPhoneNumber').value = ''; // Limpia el campo
+
+            // 4. ACTUALIZAR LA INTERFAZ EN LA COLUMNA ESTÁTICA (staticPhoneNumber)
+            document.getElementById('staticPhoneNumber').textContent = displayValue;
+        }
+    });
+
+    // =========================================================================
+    // 2. CAMBIAR CONTRASEÑA
+    // =========================================================================
+    document.getElementById('updatePasswordForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const oldPassword = document.getElementById('oldPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+        if (newPassword !== confirmNewPassword) {
+            alert("Las nuevas contraseñas no coinciden.");
+            return;
+        }
+
+        const result = await sendApiRequest("/api/profile", "PUT", { 
+            old_password: oldPassword, 
+            new_password: newPassword 
+        });
+
+        if (result) {
+        // Reemplazar el token
+        if (result.token) {
+            localStorage.setItem("token", result.token);
+        }
+        alert(result.message);
+        // Limpiar campos después del éxito
+        e.target.reset(); 
+        }
+    });
+
+    // =========================================================================
+    // 3. GESTIÓN DE CUENTA: Suspender/Reactivar
+    // =========================================================================
+    document.getElementById('toggleStatusBtn').addEventListener('click', async () => {
+        const currentStatusText = document.getElementById('accountStatus').textContent.trim();
+        const newStatus = currentStatusText === 'Activa' ? false : true;
+        const confirmationMessage = newStatus ? "¿Estás seguro de reactivar tu cuenta?" : "¿Estás seguro de suspender tu cuenta? Esto te desconectará.";
+
+        if (!confirm(confirmationMessage)) {
+            return;
+        }
+
+        const result = await sendApiRequest("/api/profile/status", "PUT", { is_active: newStatus });
+
+        if (result) {
+            alert(result.message);
+            localStorage.clear(); // Desconectar al usuario
+            window.location.href = "/login"; // Redirigir al login
+        }
+    });
+
+    // =========================================================================
+    // 4. GESTIÓN DE CUENTA: Eliminar Cuenta
+    // =========================================================================
+    document.getElementById('deleteAccountBtn').addEventListener('click', async () => {
+        if (!confirm("ADVERTENCIA: ¿Estás seguro de que deseas ELIMINAR tu cuenta permanentemente? Esta acción no se puede deshacer.")) {
+            return;
+        }
+
+        const result = await sendApiRequest("/api/profile/status", "DELETE");
+        
+        if (result) {
+            alert(result.message);
+            localStorage.clear(); // Limpiar sesión
+            window.location.href = "/register"; // Redirigir a registro
+        }
+    });
+    // =========================================================================
+    // 5. CERRAR SESIÓN (LOGOUT)
+    // =========================================================================
+    document.getElementById('logout-button').addEventListener('click', () => {
+        // 1. Limpiar el token de autenticación del almacenamiento local
+        localStorage.clear(); 
+    
+        // 2. Redirigir al usuario a la página de inicio de sesión
+        window.location.href = "/login";
+    });
+    // =========================================================================
+    // 6. GESTIÓN DE NOTIFICACIONES (PATCH /api/settings/notifications)
+    // =========================================================================
+    const notificationStatusSpan = document.getElementById('notificationStatus');
+    const toggleNotificationsBtn = document.getElementById('toggleNotificationsBtn');
+
+    // Función auxiliar para actualizar la interfaz del botón
+    function updateNotificationInterface(enabled) {
+        notificationStatusSpan.textContent = enabled ? 'Activadas' : 'Desactivadas';
+        toggleNotificationsBtn.textContent = enabled ? 'Desactivar Notificaciones' : 'Activar Notificaciones';
+        
+        // Opcional: Cambiar el estilo del botón
+        if (enabled) {
+            toggleNotificationsBtn.classList.remove('danger-button');
+            toggleNotificationsBtn.classList.add('primary-button');
+        } else {
+            toggleNotificationsBtn.classList.remove('primary-button');
+            toggleNotificationsBtn.classList.add('danger-button'); // Usar rojo para Desactivar
+        }
+    }
+
+    // Inicializar el estado al cargar la página (basado en el HTML inicial)
+    const initialStatus = notificationStatusSpan.textContent.trim() === 'Activadas';
+    updateNotificationInterface(initialStatus);
+
+    toggleNotificationsBtn.addEventListener('click', async () => {
+        // Determinar el estado actual y el nuevo estado
+        const currentStatusText = notificationStatusSpan.textContent.trim();
+        const newStatus = currentStatusText === 'Desactivadas'; // Si está Desactivado, el nuevo estado es TRUE (activar)
+
+        const confirmationMessage = newStatus 
+            ? "¿Estás seguro de ACTIVAR las notificaciones?" 
+            : "¿Estás seguro de DESACTIVAR las notificaciones? No recibirás avisos nuevos.";
+
+        if (!confirm(confirmationMessage)) {
+            return;
+        }
+
+        const result = await sendApiRequest("/api/settings/notifications", "PATCH", { enabled: newStatus });
+
+        if (result) {
+            alert(result.message);
+            
+            // Actualizar la interfaz basada en la respuesta del backend
+            updateNotificationInterface(result.new_state); 
+        }
+    });
+});
+</script>
+<script src="{{ url_for('static', filename='js/logout_handler.js') }}"></script>
+
+</body>
+</html>

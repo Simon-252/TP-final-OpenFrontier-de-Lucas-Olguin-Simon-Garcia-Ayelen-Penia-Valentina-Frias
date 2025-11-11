@@ -1,0 +1,377 @@
+/* ================================================= */
+/* ESTILOS DE BASE Y CONTENEDORES                    */
+/* ================================================= */
+
+/* ------------------------------------------------- */
+/* 0. VARIABLES GLOBALES DE COLOR (Modo Claro por defecto) */
+/* ------------------------------------------------- */
+:root {
+    --bg-main: #f4f4f9; /* Fondo principal claro */
+    --bg-secondary: #ffffff; /* Fondo de contenedores claro (ej: main) */
+    --bg-info: #eaeaea; /* Fondo de información gris claro */
+    --text-primary: #333; /* Texto oscuro */
+    --text-secondary: #666; /* Texto secundario (footer) */
+    --bg-nav: #333; /* Fondo de barra de navegación oscura */
+    --color-nav-button: #555; /* Fondo de botones de nav */
+}
+
+/* Aplicación de las variables al modo claro */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: var(--bg-main); /* Usa variable */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    /* 🔑 CLAVE 1: EVITAR EL DESBORDE HORIZONTAL 🔑 */
+    overflow-x: hidden; 
+    
+    /* Transición suave para el cambio de modo */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.main-container {
+    flex-grow: 1; 
+    padding-bottom: 70px; 
+    padding-top: 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    /* 🔑 CLAVE 2: Permitir que el contenedor ocupe el 100% del ancho visible 🔑 */
+    width: 100%; 
+    max-width: none; /* Elimina el límite de 800px para la imagen */
+    margin: 0 auto;
+}
+
+/* ================================================= */
+/* 1. Imagen (Ancho Completo de la Pantalla)         */
+/* ================================================= */
+#image-container {
+    /* 🔑 CLAVE 3: Usar 100% en lugar de 100vw y eliminar las reglas de centrado complejo 🔑 */
+    width: 100%; 
+    
+    height: 300px; 
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#pass-image {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block; 
+}
+
+/* ================================================= */
+/* 2. Indicador de Estado (Principal)           */
+/* ================================================= */
+#pass-status-container {
+    /* Mantenemos el recorte: 90% para móvil, 450px máx para escritorio */
+    width: 90%; 
+    max-width: 450px; 
+    
+    text-align: center;
+    padding: 15px 0;
+    margin-bottom: 10px; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    
+    /* CAMBIO A NEUTRO: Las clases dinámicas definen el color */
+    background-color: transparent; 
+    color: var(--text-primary); /* Usa variable, por defecto oscuro */
+    transition: background-color 0.5s;
+}
+
+#pass-status-text {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: inherit; /* Asegura que el texto use el color del padre (que se define en la clase de estado) */
+}
+
+/* ----------------------------------------------------------------- */
+/* 2.b. CLASES DINÁMICAS DE ESTADO (Según API: Abierto, Cerrado, etc.)*/
+/* ----------------------------------------------------------------- */
+
+/* Estado de ÉXITO / ABIERTO / HABILITADO */
+.status-success {
+    background-color: #66BB6A !important; /* Verde medio/claro */
+    color: white !important; 
+    box-shadow: 0 4px 8px rgba(102, 187, 106, 0.5); 
+}
+
+/* Estado de PELIGRO / CERRADO */
+.status-danger {
+    background-color: #F44336 !important; /* Rojo */
+    color: white !important; 
+    box-shadow: 0 4px 8px rgba(244, 67, 54, 0.4);
+}
+
+/* Estado de ADVERTENCIA / ERROR / DESCONOCIDO / CARGANDO */
+.status-warning, .status-loading, .status-default {
+    background-color: #FFC107 !important; /* Amarillo/Naranja */
+    color: #333 !important; 
+    box-shadow: 0 4px 8px rgba(255, 193, 7, 0.4);
+}
+
+
+/* ================================================= */
+/* 3. Contenedor de Información Adicional (Horario/Actualización) */
+/* ================================================= */
+#pass-info-container {
+    /* Usamos el mismo ancho y límite para que se alinee con el estado */
+    width: 90%; 
+    max-width: 450px; 
+
+    background-color: var(--bg-info); /* Usa variable, por defecto #eaeaea */
+    
+    padding: 15px; 
+    margin-bottom: 30px; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+#pass-info-container p {
+    margin: 5px 0;
+    line-height: 1.4;
+    font-size: 0.9em;
+    color: var(--text-primary); /* Usa variable, por defecto oscuro */
+}
+
+#pass-schedule {
+    font-weight: bold;
+    color: var(--text-primary); /* Usa variable */
+    font-size: 1em;
+}
+
+
+/* ================================================= */
+/* 4. Contenido Central (MAIN)   */
+/* ================================================= */
+main {
+    /* Usamos 'main' para limitar el ancho del contenido de texto/formularios */
+    width: 90%;
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding-bottom: 20px;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* ================================================= */
+/* 5. Barra de Navegación y Pie de Página (bottom)   */
+/* ================================================= */
+#bottom-nav {
+    position: fixed; 
+    bottom: 0; 
+    width: 100%;
+    background-color: var(--bg-nav); /* Usa variable */
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between; 
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); 
+    z-index: 1000; 
+    transition: background-color 0.3s;
+    /* NUEVO: Permitir desplazamiento horizontal */
+    overflow-x: auto; /* Permite desplazamiento horizontal si el contenido es demasiado ancho */
+    -webkit-overflow-scrolling: touch; /* Suaviza el desplazamiento en iOS */
+    white-space: nowrap; /* Evita que los contenedores hijos se envuelvan */
+}
+
+#unauthenticated-options, #authenticated-options {
+    display: flex;
+    gap: 15px; 
+    flex-shrink: 0;
+}
+
+.nav-button {
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background-color: var(--color-nav-button);
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap; /*NUEVO: Evita que el texto del botón se rompa en varias líneas */
+    flex-shrink: 0; /* NUEVO: Evita que los botones se encojan más allá de su contenido */
+    display: flex; /*  NUEVO: Para centrar el texto dentro del botón si es necesario */
+    align-items: center; /* NUEVO: Centra verticalmente el texto del botón */
+    justify-content: center; /*  NUEVO: Centra horizontalmente el texto del botón */
+    height: 40px; /*  NUEVO: Da una altura fija para evitar estiramientos excesivos */
+}
+
+.nav-button:hover {
+    background-color: #777;
+}
+
+.footer-info {
+    text-align: center;
+    padding: 20px 0;
+    color: var(--text-secondary); /* Usa variable */
+    font-size: 0.9em;
+}
+
+/* ================================================= */
+/* 6. ESTILOS DE MODO OSCURO (Aplicados con la clase body.dark-mode) */
+/* ================================================= */
+body.dark-mode {
+    --bg-main: #121212; /* Fondo principal muy oscuro */
+    --bg-secondary: #1e1e1e; /* Fondo de contenedores oscuro (main) */
+    --bg-info: #282828; /* Fondo de información oscuro/gris */
+    --text-primary: #f4f4f9; /* Texto claro */
+    --text-secondary: #aaa; /* Texto secundario más claro */
+    --bg-nav: #000000; /* Fondo de barra de navegación negro */
+    --color-nav-button: #444; /* Fondo de botones de nav */
+
+    /* Aplicación directa en body */
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+/* Ajustes específicos para Modo Oscuro */
+
+.main-container.dark-mode {
+    background-color: var(--bg-secondary);
+}
+
+#pass-info-container.dark-mode {
+    background-color: var(--bg-info);
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+#pass-info-container.dark-mode p {
+    color: var(--text-primary);
+}
+
+main.dark-mode {
+    background-color: var(--bg-secondary);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+#bottom-nav.dark-mode {
+    background-color: var(--bg-nav);
+    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.2);
+}
+
+.nav-button.dark-mode {
+    background-color: var(--color-nav-button);
+    color: var(--text-primary);
+}
+
+.nav-button.dark-mode:hover {
+    background-color: #666;
+}
+
+.footer-info.dark-mode {
+    color: var(--text-secondary);
+}
+
+/* ================================================= */
+/* ESTILOS ESPECÍFICOS DE NOTIFICACIONES */
+/* ================================================= */
+
+.notifications-container {
+    padding: 20px;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message-item {
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-info); /* Gris claro */
+    border-left: 5px solid;
+    transition: background-color 0.3s;
+}
+
+/* Estado de No Leído */
+.msg-unread {
+    background-color: var(--bg-secondary);
+    border-left-color: #007bff; /* Azul para resaltar */
+    font-weight: bold;
+}
+
+/* Estado de Leído */
+.msg-read {
+    opacity: 0.7;
+    border-left-color: #6c757d; /* Gris para indicar leído */
+}
+
+/* Tipos de Mensaje */
+.message-type-alert {
+    border-left-color: #dc3545; /* Rojo para alertas */
+    background-color: #ffe6e6; /* Fondo más claro para alertas */
+}
+
+body.dark-mode .message-type-alert {
+    background-color: #3d0000;
+}
+
+.message-header {
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.mark-read-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+}
+
+.mark-read-btn:hover {
+    background-color: #0056b3;
+}
+
+.form-card {
+    padding: 15px;
+    background-color: var(--bg-info);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-card input, .form-card textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.button-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

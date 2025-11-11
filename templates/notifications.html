@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Centro de Mensajes y Alertas</h2>
+    
+    <div id="supportFormContainer" style="display: none;" class="mb-4">
+        <h3>Enviar Mensaje a Soporte</h3>
+        <div class="card p-3">
+            <form id="supportForm">
+                <div class="mb-3">
+                    <input type="text" id="supportSubject" class="form-control" placeholder="Asunto" required>
+                </div>
+                <div class="mb-3">
+                    <textarea id="supportBody" class="form-control" placeholder="Describe tu problema..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+            </form>
+        </div>
+        <hr>
+    </div>
+
+    <h3>Mi Buzón (<span id="unreadCount">0</span> no leídos)</h3>
+    
+    <div id="messagesList" class="list-group">
+        <p class="list-group-item">Cargando mensajes...</p>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/notification_handler.js') }}"></script>
+{% endblock %}

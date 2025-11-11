@@ -1,0 +1,37 @@
+[
+  {
+    "username": "Juan_Perez",
+    "password": "password123",
+    "email": "juan.perez@example.com",
+    "role": "user",
+    "phone": "1165432109"
+  },
+  {
+    "username": "Maria_Gomez",
+    "password": "securepass456",
+    "email": "maria.gomez@example.net",
+    "role": "user",
+    "phone": "1198765432"
+  },
+  {
+    "username": "Carlos_Rodriguez",
+    "password": "c@rlosP@ss789",
+    "email": "carlos.rodriguez@examplecom",
+    "role": "user",
+    "phone": "1155112233"
+  },
+  {
+    "username": "Ana_Martinez",
+    "password": "passAna!2025",
+    "email": "ana.martinez@example.com",
+    "role": "user",
+    "phone": "1177889900"
+  },
+  {
+    "username": "Pedro_Lopez",
+    "password": "p3dr0L0p3z#",
+    "email": "pedro.lopez@example.net",
+    "role": "user",
+    "phone": "1122334455"
+  }
+]

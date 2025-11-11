@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> <!-- se usa para definir la codificación de caracteres -->
+    <title>Estado del Paso</title> <!-- título de la página -->
+</head>
+<body>
+    <h1>Paso Cristo Redentor</h1>
+    <p><strong>Estado:</strong> {{ pasos.estado }}</p> <!-- muestra el estado del paso, lo que esta entre parentesis dobles es una variable de Jinja2 -->
+    <p><strong>Última actualización:</strong> {{ pasos.actualizado }}</p> <!-- muestra la última actualización del paso -->
+    <p><strong>Fuente:</strong> <a href="{{ pasos.fuente }}" target="_blank">{{ pasos.fuente }}</a></p> <!-- muestra la fuente del estado del paso, el atributo target="_blank" hace que el enlace se abra en una nueva pestaña -->
+    <p><strong>Registrado en:</strong> {{ pasos.timestamp }}</p> <!-- muestra la fecha y hora en que se registró el estado del paso -->
+    <p><a href="/">Volver al inicio</a></p> <!-- enlace para volver a la página de inicio -->
+</body>
+</html>

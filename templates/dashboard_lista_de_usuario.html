@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+        .button-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+    </style>
+</head>
+
+<body class="p-4">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Dashboard</a>
+            <a href="/" class="btn btn-outline-success me-2">Ir a Página Principal</a> 
+            <a href="/panel_clima_y_pasos" class="btn btn-outline-info me-2">Ir a Panel de Clima y Estado del paso</a>
+            
+            <a href="/notifications" class="btn btn-outline-primary me-2">
+                🔔 Buzón y Soporte
+            </a> 
+            <button id="logoutBtn" class="nav-button button-danger">Cerrar sesión</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h3>Welcome, <span id="username"></span>!</h3>
+        <p>Your role: <span id="role"></span></p>
+
+        <div id="map"></div>
+
+        <div id="adminSection" style="display:none;">
+    
+            <h5>Admin-only content</h5>
+            <p>This section is visible only to admins.</p>
+
+            <h6 class="mt-4">🚀 Alerta Global a Usuarios</h6>
+            <div class="card p-3 mb-4">
+                <form id="globalAlertForm">
+                    <div class="mb-3">
+                        <label for="alertSubject" class="form-label">Asunto (Opcional)</label>
+                        <input type="text" class="form-control" id="alertSubject" value="Alerta del Sistema">
+                    </div>
+                    <div class="mb-3">
+                        <label for="alertBody" class="form-label">Mensaje de Alerta</label>
+                        <textarea class="form-control" id="alertBody" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Enviar Alerta a TODOS</button>
+                </form>
+            </div>
+    
+            <h6 class="mt-4">Gestión de Usuarios</h6>
+            <div class="card p-3 mb-4">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-6">
+                        <label for="searchTerm" class="form-label">Buscar (Nombre, Email, ID)</label>
+                        <input type="text" class="form-control" id="searchTerm" placeholder="Escribe nombre, email o ID...">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="filterRole" class="form-label">Filtrar por Rol</label>
+                        <select class="form-select" id="filterRole">
+                            <option value="">Todos</option>
+                            <option value="admin">Administrador</option>
+                            <option value="user">Usuario Regular</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <button id="searchButton" class="btn btn-primary w-100">Aplicar Filtros</button>
+                    </div>
+                </div>
+            </div>
+    
+            <table class="table table-bordered table-hover mt-2">
+                <thead>
+                    <tr>
+                        <th>ID</th> <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th class="text-center">Estado</th> 
+                        <th class="text-center" style="width: 30%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <tr><td colspan="6" class="text-center">Cargando usuarios...</td></tr>
+                </tbody>
+            </table>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <small id="paginationInfo" class="text-muted">Mostrando 0 de 0 usuarios.</small>
+                <nav>
+                    <ul class="pagination mb-0" id="paginationControls">
+                        </ul>
+                </nav>
+            </div>
+        </div>
+    </div> 
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+        <script src="/static/js/dashboard.js"></script> 
+<script src="{{ url_for('static', filename='js/logout_handler.js') }}"></script>
+</body>
+</html>

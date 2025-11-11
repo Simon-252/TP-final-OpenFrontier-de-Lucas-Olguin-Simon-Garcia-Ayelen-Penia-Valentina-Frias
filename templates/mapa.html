@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapa Interactivo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <style>
+        #mapa_leaflet {
+            height: 600px; /* Define la altura que tendrá el mapa */
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="p-4">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Mapa del Paso</a>
+            <a href="/" class="btn btn-outline-success me-2">Página Principal</a> 
+            <a href="/panel_clima_y_pasos" class="btn btn-outline-info me-2">Panel de Clima y Estado del paso</a>
+            <button id="logoutBtn" class="nav-button button-danger">Cerrar sesión</button>
+
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1>Ubicaciones en el Mapa</h1>
+        <p>Este mapa muestra puntos de interés o usuarios (ejemplo).</p>
+        
+        <div id="mapa_leaflet"></div>
+    </div> 
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        // Coordenadas del Paso Cristo Redentor (Los Libertadores)
+        const CRISTO_REDENTOR_LAT = -32.825;
+        const CRISTO_REDENTOR_LNG = -70.089;
+        const INICIAL_ZOOM = 10;
+        const POI_FILE = '/static/data/puntos_interes.json';
+
+        // 1. Inicializar el mapa centrado en el Paso Fronterizo
+        var map = L.map('mapa_leaflet').setView([CRISTO_REDENTOR_LAT, CRISTO_REDENTOR_LNG], INICIAL_ZOOM);
+
+        // 2. Añadir el Tile Layer (fondo del mapa)
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // 3. Crear el ícono de la frontera
+        const borderIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        // 4. Crear el ícono para hoteles/servicios (rojo)
+        const serviceIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        // 5. Función para agregar marcadores (separada para claridad)
+        function addMarkers(pointsOfInterest) {
+            pointsOfInterest.forEach(poi => {
+                let iconToUse = poi.iconType === "frontera" ? borderIcon : serviceIcon;
+
+                const marker = L.marker([poi.lat, poi.lng], { icon: iconToUse }).addTo(map);
+                
+                marker.bindPopup(`
+                    <b>${poi.name}</b><br>
+                    ${poi.address}<br>
+                    <i>${poi.iconType === 'frontera' ? 'Punto de Control' : 'Servicio Cercano'}</i>
+                `);
+            });
+        }
+
+        // 6. Cargar los datos de los POI usando Fetch
+        fetch(POI_FILE)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el JSON de POI');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Llamar a la función para agregar marcadores una vez que los datos estén listos
+                addMarkers(data);
+            })
+            .catch(error => {
+                console.error("Error al cargar los POI:", error);
+                alert("Hubo un error al cargar los puntos de interés del mapa.");
+            });
+
+        // Código de cierre de sesión (si es necesario)
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            localStorage.clear();
+            window.location.href = "/";
+        });
+        
+    </script>
+<script src="{{ url_for('static', filename='js/logout_handler.js') }}"></script>
+
+</body>
+</html>
