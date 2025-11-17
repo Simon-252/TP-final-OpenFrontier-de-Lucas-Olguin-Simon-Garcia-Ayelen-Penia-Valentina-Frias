@@ -158,11 +158,15 @@ if __name__ == "__main__":
 
 -Unit Test
 Instalar pytest
+
 pip install pytest pytest-flask
 
 -Para ejecutar los tests unitarios e integrales:
 pytest 
 
+ o sino:
+
+ python -m pytest
 
 -Migrations
 -Intalar Flask Migrate
