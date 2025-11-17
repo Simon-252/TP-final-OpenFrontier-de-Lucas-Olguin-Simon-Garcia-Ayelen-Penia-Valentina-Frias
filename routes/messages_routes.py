@@ -115,7 +115,6 @@ def send_global_alert(current_user):
             lng = float(longitude)
             
             # 1. Guardar el punto de interés en el JSON
-            # ¡CAMBIO CLAVE: Ya no se pasa photo_url!
             point_id = add_point_to_json(
                 subject=subject, 
                 body=body,
@@ -139,9 +138,7 @@ def send_global_alert(current_user):
         subject=subject,
         body=body,
         message_type='alert',
-        is_read_by_recipient=False
-        # Si tienes un campo 'map_point_id' en el modelo Message, deberías asociarlo aquí:
-        # map_point_id=point_id 
+        is_read_by_recipient=False, # No aplica para broadcast
     )
 
     try:
