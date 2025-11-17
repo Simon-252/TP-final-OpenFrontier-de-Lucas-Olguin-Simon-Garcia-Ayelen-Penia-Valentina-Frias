@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportar Suceso - OpenFrontier</title>
+    
+    <link rel="stylesheet" href="/static/css/layout.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        /* Estilos generales para centrar el contenido y usar el tema oscuro/claro */
+        :root {
+            /* Variables de color de ejemplo, ajusta a tus variables reales */
+            --background-color: #2e2e2e; /* Fondo oscuro */
+            --text-color: #f0f0f0; 
+            --card-background-color: #3e3e3e;
+            --border-color: #555;
+            --primary-color: #d9534f; /* Rojo de "Reportar Suceso" */
+            --secondary-color: #8c8c8c;
+            --home-button-color: #1e87f0; /* Color azul para el botón de inicio */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative; /* Necesario para posicionar el botón de inicio */
+        }
+
+        #report-card {
+            background: var(--card-background-color); 
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--border-color);
+        }
+        
+        /* 🏡 NUEVO ESTILO: Botón de Inicio (Casita) */
+        #home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--card-background-color);
+            color: var(--home-button-color);
+            border: 2px solid var(--home-button-color);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        #home-button:hover {
+            background-color: rgba(30, 135, 240, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text-color);
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        #incident-form input[type="text"], 
+        #incident-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            background: #4a4a4a; 
+            color: var(--text-color);
+            resize: none; 
+        }
+        
+        /* Diseño de la rejilla de botones */
+        .report-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 30px;
+            /* Definimos el orden: Subir, Ubicacion, Cancelar en la Fila 1; Enviar en Fila 2 (Columna 3) */
+            grid-template-areas: 
+                "subir ubicacion cancelar"
+                ". . enviar"; 
+        }
+        
+        /* Asignación de áreas */
+        .grid-upload { grid-area: subir; }
+        .grid-location { grid-area: ubicacion; }
+        .grid-cancel { grid-area: cancelar; }
+        .grid-submit { 
+            grid-area: enviar;
+            grid-column: 3 / span 1; 
+        }
+
+        .action-btn {
+            padding: 10px 5px;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .action-btn i {
+            margin-right: 5px;
+        }
+
+        .secondary-action {
+            background-color: transparent;
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+        }
+        
+        .secondary-action:hover {
+            background-color: rgba(217, 83, 79, 0.1);
+        }
+
+        #cancel-report-btn {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .submit-action {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+        
+        .message-box {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .report-actions-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas: 
+                    "subir ubicacion"
+                    "cancelar enviar";
+            }
+            .grid-submit {
+                grid-column: 2 / 3; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+<button id="home-button" title="Volver a la página de inicio">
+    <i class="fas fa-home"></i>
+</button>
+
+<div id="report-card">
+    <h1 class="section-title">Centro de Mensajes y Alertas</h1>
+    
+    <form id="incident-form" enctype="multipart/form-data"> 
+        <div class="form-group">
+            <label for="subject">Asunto:</label>
+            <input type="text" id="subject" name="subject" maxlength="100" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Describe tu problema:</label>
+            <textarea id="description" name="description" rows="5" maxlength="500" required></textarea>
+        </div>
+        
+        <input 
+            type="file" 
+            id="photo-input" 
+            name="incident_photo" 
+            accept="image/*" 
+            style="display: none;" 
+        />
+        
+        <input type="hidden" id="lat" name="lat" value="">
+        <input type="hidden" id="lng" name="lng" value="">
+
+        <div class="report-actions-grid">
+            
+            <label for="photo-input" class="action-btn secondary-action grid-upload" id="upload-photo-label">
+                <i class="fas fa-cloud-upload-alt"></i> Subir Foto
+            </label>
+            
+            <button type="button" class="action-btn secondary-action grid-location" id="add-location-btn">
+                <i class="fas fa-map-marker-alt"></i> Añadir Ubicación
+            </button>
+            
+            <button type="submit" class="action-btn submit-action grid-submit">
+                <i class="fas fa-paper-plane"></i> Enviar Mensaje
+            </button>
+            
+            <button type="button" class="action-btn secondary-action grid-cancel" id="cancel-report-btn">
+                Cancelar
+            </button>
+
+        </div>
+        
+    </form>
+    
+    <div id="report-message" class="message-box" style="display: none;"></div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const reportForm = document.getElementById('incident-form');
+        const reportMessage = document.getElementById('report-message');
+        const cancelBtn = document.getElementById('cancel-report-btn');
+        const addLocationBtn = document.getElementById('add-location-btn');
+        const photoInput = document.getElementById('photo-input');
+        const uploadPhotoLabel = document.getElementById('upload-photo-label');
+        const homeButton = document.getElementById('home-button'); 
+
+        // -----------------------------------------------------
+        // ELIMINACIÓN DE LÓGICA: isFormDirty y Alertas de Salida
+        // -----------------------------------------------------
+
+        // 🏡 Listener para el botón de Inicio (Casita): Navegación inmediata
+        if (homeButton) {
+            homeButton.addEventListener('click', (e) => {
+                // Navega sin preguntar si el formulario está sucio
+                window.location.href = '/'; 
+            });
+        }
+        
+        // Listener para el botón Cancelar: Navegación inmediata
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', (e) => {
+                // Navega sin preguntar si el formulario está sucio
+                window.location.href = '/'; 
+            });
+        }
+
+
+        // -----------------------------------------------------
+        // MANEJO DE ARCHIVO SUBIDO (Mostrar nombre/estado)
+        // -----------------------------------------------------
+        if (photoInput) {
+            photoInput.addEventListener('change', () => {
+                if (photoInput.files.length > 0) {
+                    const fileName = photoInput.files[0].name;
+                    uploadPhotoLabel.textContent = `Foto: ${fileName}`;
+                    uploadPhotoLabel.style.backgroundColor = 'green';
+                    uploadPhotoLabel.style.borderColor = 'green';
+                    uploadPhotoLabel.style.color = 'white';
+                } else {
+                    uploadPhotoLabel.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Subir Foto';
+                    uploadPhotoLabel.style.backgroundColor = 'transparent';
+                    uploadPhotoLabel.style.borderColor = 'var(--secondary-color)';
+                    uploadPhotoLabel.style.color = 'var(--secondary-color)';
+                }
+            });
+        }
+        
+        // -----------------------------------------------------
+        // ✅ CORRECCIÓN MANTENIDA: MANEJO DE UBICACIÓN REAL Y AJUSTE DE TIMEOUT
+        // -----------------------------------------------------
+        function updateLocationButton(text, bgColor, borderColor, textColor) {
+            addLocationBtn.innerHTML = text;
+            addLocationBtn.style.backgroundColor = bgColor;
+            addLocationBtn.style.borderColor = borderColor;
+            addLocationBtn.style.color = textColor;
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                updateLocationButton('<i class="fas fa-spinner fa-spin"></i> Obteniendo...', 
+                                     'transparent', '#1e87f0', '#1e87f0');
+
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        document.getElementById('lat').value = position.coords.latitude; 
+                        document.getElementById('lng').value = position.coords.longitude; 
+
+                        updateLocationButton('Ubicación Añadida ✔️', 'green', 'green', 'white');
+                        
+                        setTimeout(() => {
+                             updateLocationButton('<i class="fas fa-map-marker-alt"></i> Ubicación Añadida', 
+                                                  'transparent', 'var(--secondary-color)', 'var(--secondary-color)');
+                        }, 3000);
+                    },
+                    (error) => {
+                        console.error("Error al obtener la ubicación:", error);
+                        updateLocationButton('Error Ubicación ❌', 'red', 'red', 'white');
+                        alert("No se pudo obtener la ubicación. Por favor, asegúrate de que los permisos de ubicación están activados.");
+                        
+                        setTimeout(() => {
+                             updateLocationButton('<i class="fas fa-map-marker-alt"></i> Añadir Ubicación', 
+                                                  'transparent', 'var(--secondary-color)', 'var(--secondary-color)');
+                        }, 3000);
+
+                        document.getElementById('lat').value = ''; 
+                        document.getElementById('lng').value = '';
+                    },
+                    {
+                        enableHighAccuracy: true, 
+                        timeout: 10000,           // Ajuste mantenido: 10 segundos
+                        maximumAge: 60000         // Ajuste mantenido: 1 minuto de caché
+                    }
+                );
+            } else {
+                alert("Tu navegador no soporta la API de Geolocation.");
+            }
+        }
+        
+        if (addLocationBtn) {
+            addLocationBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                getLocation(); 
+            });
+        }
+
+
+        // -----------------------------------------------------
+        // ✅ CORRECCIÓN MANTENIDA: MANEJO DEL ENVÍO Y LIMPIEZA TOTAL
+        // -----------------------------------------------------
+        reportForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const token = localStorage.getItem('token');
+            if (!token) {
+                reportMessage.style.backgroundColor = 'red';
+                reportMessage.textContent = "Su sesión no es válida. Redirigiendo a Login...";
+                reportMessage.style.display = 'block';
+                setTimeout(() => window.location.href = '/login', 2000);
+                return;
+            }
+            
+            const dataToSend = new FormData(this);
+            
+            reportMessage.style.display = 'block';
+            reportMessage.style.backgroundColor = '#4a4a4a';
+            reportMessage.style.color = 'white';
+            reportMessage.textContent = 'Enviando reporte... Por favor, espera.';
+
+            try {
+                const response = await fetch('/api/report', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}` 
+                    },
+                    body: dataToSend 
+                });
+
+                let result;
+                try {
+                    result = await response.json();
+                } catch (jsonError) {
+                    result = { msg: "Respuesta inválida del servidor." }; 
+                }
+                
+                if (response.ok) {
+                    reportMessage.style.backgroundColor = 'green';
+                    reportMessage.textContent = result.msg || "Reporte enviado con éxito. ¡Gracias!";
+                    
+                    // 1. Resetear el formulario (campos visibles)
+                    reportForm.reset();
+                    
+                    // 2. Limpiar campos ocultos explícitamente
+                    document.getElementById('lat').value = '';
+                    document.getElementById('lng').value = '';
+                    
+                    // 3. Reiniciar el estado visual del botón de foto
+                    photoInput.dispatchEvent(new Event('change'));
+                } else if (response.status === 401) {
+                    reportMessage.style.backgroundColor = 'red';
+                    reportMessage.textContent = "Error 401: Sesión expirada. Redirigiendo a Login.";
+                    setTimeout(() => window.location.href = '/login', 2000);
+                } else {
+                    reportMessage.style.backgroundColor = 'red';
+                    reportMessage.textContent = "Error al enviar: " + (result.msg || "Fallo desconocido.");
+                }
+
+            } catch (error) {
+                console.error("Error de red al enviar el reporte:", error);
+                reportMessage.style.backgroundColor = 'red';
+                reportMessage.textContent = "Error de conexión. Inténtalo de nuevo.";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

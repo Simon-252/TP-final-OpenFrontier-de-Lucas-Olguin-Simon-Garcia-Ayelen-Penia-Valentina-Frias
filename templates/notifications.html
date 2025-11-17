@@ -1,31 +1,670 @@
-{% extends "layout.html" %}
-
-{% block content %}
-<div class="container mt-4">
-    <h2>Centro de Mensajes y Alertas</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buzón de Notificaciones</title>
     
-    <div id="supportFormContainer" style="display: none;" class="mb-4">
-        <h3>Enviar Mensaje a Soporte</h3>
-        <div class="card p-3">
-            <form id="supportForm">
-                <div class="mb-3">
-                    <input type="text" id="supportSubject" class="form-control" placeholder="Asunto" required>
-                </div>
-                <div class="mb-3">
-                    <textarea id="supportBody" class="form-control" placeholder="Describe tu problema..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-            </form>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script>
+        // Configuración de colores personalizados de Tailwind
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-purple': '#8b5cf6',
+                        'dark-bg': '#1f2937',
+                        'card-bg': '#374151',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos base del tema oscuro */
+        body { background-color: #111827; font-family: 'Inter', sans-serif; color: #f3f4f6; }
+        
+        /* Estilo para las tarjetas de notificaciones */
+        .notification-card {
+            border: 2px solid #6b7280;
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1.25rem;
+        }
+        /* Colores de borde específicos */
+        .user-message { border-color: #60a5fa; } /* Azul para Mensajes Privados */
+        .system-alert { border-color: #ef4444; } /* Rojo para Alertas Globales */
+        
+        /* Indicador de Nuevo */
+        .new-indicator {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            background-color: #10b981; /* Verde */
+            color: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* --- ESTILOS CLAVE PARA EL MODAL DE BOOTSTRAP (TEMA OSCURO) --- */
+        
+        /* Asegura el fondo oscuro del contenido del modal */
+        #globalAlertModal .modal-content {
+            background-color: #1f2937; /* dark-bg */
+            color: #f3f4f6;
+            border: 1px solid #4b5563;
+        }
+        
+        /* Colores del encabezado (ya era rojo, pero aseguramos la línea divisoria) */
+        #globalAlertModal .modal-header {
+            border-bottom-color: #4b5563;
+        }
+        
+        /* Colores del pie de página */
+        #globalAlertModal .modal-footer {
+            border-top-color: #4b5563;
+        }
+
+        /* Hace la X del botón de cerrar blanca */
+        #globalAlertModal .btn-close.btn-close-white {
+            filter: invert(1) grayscale(100%) brightness(200%); 
+        }
+
+        /* Asegura que los campos de formulario de Bootstrap se vean oscuros */
+        #globalAlertModal .form-control {
+            background-color: #374151 !important; /* card-bg */
+            color: #f3f4f6 !important;
+            border-color: #4b5563 !important;
+        }
+
+        /* Ajuste para el texto muted dentro del modal */
+        #globalAlertModal .text-muted, #globalAlertModal .form-text {
+            color: #9ca3af !important; /* gray-400 */
+        }
+        /* ---------------------------------------------------------------- */
+
+        /* Clase para el modal de Alerta Global que es de Bootstrap */
+        .modal-body-scrollable {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-gray-700">
+            <h1 class="text-3xl font-extrabold text-white">Centro de Notificaciones</h1>
+            
+            <div class="flex space-x-3">
+                <a href="/" class="bg-gray-700 text-white p-3 rounded-full shadow-lg hover:bg-gray-600 transition duration-150" title="Volver al inicio">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-10v10a1 1 0 001 1h3m-7 0a1 1 0 01-1-1v-4a1 1 0 00-1-1h-2a1 1 0 00-1 1v4a1 1 0 01-1 1z" />
+                    </svg>
+                </a>
+                <button id="logoutBtn" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-150 font-semibold">Cerrar sesión</button>
+            </div>
         </div>
-        <hr>
-    </div>
 
-    <h3>Mi Buzón (<span id="unreadCount">0</span> no leídos)</h3>
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-300">Mensajes Recibidos</h2>
+            <button id="showGlobalAlertModalBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition font-bold shadow-lg" style="display:none;">
+                🚨 Crear Alerta Global
+            </button>
+        </div>
+
+        <div id="messagesContainer" class="space-y-4">
+            <p class="text-center text-gray-400">Cargando mensajes...</p>
+        </div>
+        
+    </div> 
+
+    <div class="modal fade" id="globalAlertModal" tabindex="-1" aria-labelledby="globalAlertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-red-700 text-white border-b border-gray-700">
+                    <h5 class="modal-title" id="globalAlertModalLabel">🚨 Enviar Alerta Global</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="globalAlertForm">
+                    <div class="modal-body modal-body-scrollable">
+                        <p class="text-muted">Envía un aviso a todos los usuarios. Puedes adjuntar una ubicación si se trata de un incidente.</p>
+                        
+                        <div class="mb-3">
+                            <label for="alertSubject" class="form-label">Asunto / Título</label>
+                            <input type="text" class="form-control" id="alertSubject" placeholder="Mantenimiento del sitio, Accidente en ruta, etc." required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="alertMessage" class="form-label">Mensaje de Alerta Global (Cuerpo)</label>
+                            <textarea class="form-control" id="alertMessage" rows="3" placeholder="Detalle del aviso o incidente." required></textarea>
+                        </div>
+                        
+                        <hr class="my-4 border-gray-700">
+
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="requireLocationCheck">
+                            <label class="form-check-label fw-bold" for="requireLocationCheck">
+                                Marcar si este aviso es un **Incidente con Ubicación** (ej: accidente, cierre de ruta).
+                            </label>
+                        </div>
+
+                        <h6 class="text-white">📍 Geolocalización del Incidente (<span id="locationRequirement" class="text-muted">Opcional</span>)</h6>
+                        <div id="locationFields" style="display: none;">
+                            <div class="mb-3">
+                                <label for="alertLocation" class="form-label">Latitud, Longitud (Ej: -32.82724, -70.09213)</label>
+                                <input type="text" class="form-control" id="alertLocation" placeholder="LAT, LNG">
+                                <small class="form-text">Asegúrate de usar el formato correcto y separados por coma.</small>
+                            </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary bg-gray-500 hover:bg-gray-600 border-0" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger bg-red-600 hover:bg-red-700 border-0">🔴 Enviar Alerta</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     
-    <div id="messagesList" class="list-group">
-        <p class="list-group-item">Cargando mensajes...</p>
+    <div id="messageDetailModal" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center p-4 z-50">
+        <div class="bg-card-bg rounded-xl p-6 w-full max-w-lg shadow-2xl relative">
+            <h2 id="modal-subject" class="text-2xl font-bold mb-4 text-white"></h2>
+            <p class="text-sm text-gray-400 mb-2">De: <span id="modal-sender" class="font-medium"></span></p>
+            <p class="text-sm text-gray-400 mb-4">Fecha: <span id="modal-timestamp" class="font-medium"></span></p>
+            
+            <div class="max-h-80 overflow-y-auto mb-4 border border-gray-600 p-3 rounded-lg bg-dark-bg">
+                <p id="modal-body" class="whitespace-pre-wrap text-gray-200 text-sm"></p>
+            </div>
+            
+            <div id="modal-location-container" class="mt-4 p-3 bg-gray-700 rounded-lg hidden">
+                <p class="text-xs text-gray-400">Ubicación Detectada:</p>
+                <div class="flex justify-between items-center">
+                    <code id="modal-location-value" class="text-yellow-400 text-sm font-mono me-3"></code>
+                    <button id="copy-location-btn" class="flex-shrink-0 bg-gray-500 text-white px-3 py-1 rounded-lg text-xs hover:bg-gray-600 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline me-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-2M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v2"/></svg>
+                        Copiar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex justify-end space-x-3 mt-4">
+                <button id="use-in-alert-btn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition hidden">
+                    Usar en Alerta 🚨
+                </button>
+                <button id="close-detail-modal" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition">Cerrar</button>
+            </div>
+        </div>
     </div>
-</div>
 
-<script src="{{ url_for('static', filename='js/notification_handler.js') }}"></script>
-{% endblock %}
+    <script>
+        const API_BASE_MESSAGES = "/api/messages";
+        let userToken = localStorage.getItem("token"); 
+        let currentUserRole = localStorage.getItem('user_role') ? localStorage.getItem('user_role').toLowerCase() : 'user'; 
+        let globalAlertModalInstance; 
+        let MESSAGES = []; // Para almacenar mensajes en el cliente
+        
+        // --- DEPURACIÓN DE ROL (MANTENIDO) ---
+        console.log("--- DEBUG ROL ---");
+        console.log(`currentUserRole (Valor crudo en localStorage): ${localStorage.getItem('user_role')}`);
+        console.log(`Role normalizado (a minúsculas): ${currentUserRole}`);
+        if (currentUserRole !== 'admin') {
+            console.log("CONDICIÓN NO CUMPLIDA. El usuario NO es reconocido como 'admin'.");
+        } else {
+            console.log("ROL RECONOCIDO. Es 'admin'.");
+        }
+
+        // 1. --- LÓGICA DE CARGA Y RENDERIZADO DEL BUZÓN (MANTENIDO) ---
+
+        async function loadMessages() {
+            if (!userToken) {
+                window.location.href = '/login';
+                return;
+            }
+
+            const container = document.getElementById('messagesContainer');
+            container.innerHTML = '<p class="text-center text-gray-400">Buscando mensajes...</p>';
+
+            try {
+                const response = await fetch(API_BASE_MESSAGES, {
+                    headers: { 'Authorization': `Bearer ${userToken}` }
+                });
+
+                if (response.status === 401) {
+                    alert("Sesión expirada. Por favor, inicia sesión de nuevo.");
+                    localStorage.clear();
+                    window.location.href = '/login';
+                    return;
+                }
+
+                if (!response.ok) {
+                    // Si el error es 403 (FORBIDDEN), esto significa que el token es inválido o no tiene permisos.
+                    if (response.status === 403) {
+                            throw new Error('Permiso denegado (403). Revise su token y rol.');
+                    }
+                    throw new Error('Error al obtener la lista de mensajes.');
+                }
+
+                MESSAGES = await response.json();
+                renderMessages(MESSAGES);
+
+            } catch (error) {
+                console.error("Error al cargar mensajes:", error);
+                container.innerHTML = `<p class="text-center text-red-400">Error al cargar mensajes: ${error.message}.</p>`;
+            }
+        }
+
+        function renderMessages(messages) {
+            const container = document.getElementById("messagesContainer");
+            container.innerHTML = ""; 
+            
+            if (messages.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-400 py-8">No tienes mensajes ni alertas globales.</p>';
+                return;
+            }
+
+            // Clasificar en Leídos y No Leídos
+            const groups = {
+                'No Leídos': messages.filter(msg => msg.message_type !== 'alert' && !msg.is_read_by_recipient),
+                'Leídos': messages.filter(msg => msg.message_type === 'alert' || msg.is_read_by_recipient) 
+            };
+            
+            // Ordenar mensajes por fecha dentro de cada grupo
+            const sortMessages = (a, b) => new Date(b.timestamp) - new Date(a.timestamp);
+            groups['No Leídos'].sort(sortMessages);
+            groups['Leídos'].sort(sortMessages);
+            
+            // Unir No Leídos y Leídos, mostrando primero los no leídos
+            const allMessages = groups['No Leídos'].concat(groups['Leídos']);
+
+            // Aquí renderizamos todos juntos, sin separadores de grupo, pero con el orden correcto.
+            allMessages.forEach(msg => {
+                container.innerHTML += createMessageCard(msg);
+            });
+            
+            bindMessageEvents();
+        }
+
+        function createMessageCard(msg) {
+            const isAlert = msg.message_type === 'alert';
+            const isRead = msg.is_read_by_recipient; 
+            const isUnread = !isRead && !isAlert; // Solo los privados/reportes pueden ser "no leídos"
+
+            const cardClass = isAlert ? 'system-alert' : 'user-message';
+            const ringClass = isUnread ? 'ring-2 ring-blue-500/50' : '';
+            
+            const icon = isAlert ? 
+                `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline me-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>` : 
+                `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline me-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>`;
+            
+            let deleteButtonHtml = '';
+            
+            // Los administradores pueden borrar todo. Los usuarios solo pueden borrar sus mensajes privados (no alertas)
+            if (currentUserRole === 'admin' || !isAlert) {
+                deleteButtonHtml = `<button class="btn-delete bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition text-sm ms-2" data-message-id="${msg.id}" data-is-alert="${isAlert}">Borrar</button>`;
+            }
+            
+            const senderText = isAlert ? 'Sistema' : msg.sender_username;
+            const date = new Date(msg.timestamp).toLocaleString('es-ES');
+
+            return `
+                <div data-id="${msg.id}" data-unread="${isUnread}" class="notification-card ${cardClass} bg-card-bg shadow-lg mb-4 relative transition hover:shadow-xl ${ringClass}">
+                    ${isUnread ? `<span class="new-indicator">NUEVO</span>` : ''}
+
+                    <div class="flex items-start justify-between">
+                        <div class="w-full">
+                            <div class="flex items-center mb-2">
+                                ${icon}
+                                <span class="font-semibold text-gray-300 text-sm me-4">${isAlert ? 'Tipo: Alerta Global' : 'De: ' + senderText}</span>
+                                <span class="text-xs text-gray-400">${date}</span>
+                            </div>
+
+                            <h4 class="text-xl font-bold mb-2 text-white">${msg.subject}</h4>
+                            <p class="text-sm text-gray-400 mb-4 overflow-hidden max-h-10 text-ellipsis">${msg.body.split('\n')[0] || msg.body}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-2 pt-2 border-t border-gray-700">
+                        <button class="btn-view bg-primary-purple text-white px-3 py-1 rounded-lg hover:bg-purple-600 transition text-sm" data-message-id="${msg.id}">Ver Detalle</button>
+                        ${deleteButtonHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        function bindMessageEvents() {
+            document.querySelectorAll('.btn-view').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const messageId = e.currentTarget.dataset.messageId;
+                    const message = MESSAGES.find(m => m.id === messageId);
+                    if (message) {
+                        showDetailModal(message);
+                        if (message.message_type !== 'alert' && !message.is_read_by_recipient) {
+                            markAsRead(messageId);
+                        }
+                    }
+                });
+            });
+            
+            document.getElementById('close-detail-modal').addEventListener('click', () => {
+                document.getElementById('messageDetailModal').classList.remove('flex');
+                document.getElementById('messageDetailModal').classList.add('hidden');
+            });
+            
+            document.querySelectorAll('.btn-delete').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const messageId = e.currentTarget.dataset.messageId;
+                    const isAlert = e.currentTarget.dataset.isAlert === 'true'; 
+
+                    let confirmMsg;
+                    if (isAlert) {
+                        confirmMsg = "⚠️ ¿Estás seguro de que quieres eliminar esta Alerta Global? Esta acción es permanente y la alerta se eliminará para todos los usuarios.";
+                    } else {
+                        confirmMsg = "¿Estás seguro de que quieres eliminar este mensaje privado de tu buzón?";
+                    }
+                    
+                    if (confirm(confirmMsg)) {
+                        deleteMessage(messageId);
+                    }
+                });
+            });
+
+            // CAMBIO: Añadir listener al nuevo botón "Usar en Alerta"
+            const useInAlertBtn = document.getElementById('use-in-alert-btn');
+            if (useInAlertBtn) {
+                useInAlertBtn.addEventListener('click', handleUseInAlert);
+            }
+
+            // CAMBIO: Añadir listener al nuevo botón "Copiar Ubicación"
+            const copyLocationBtn = document.getElementById('copy-location-btn');
+            if (copyLocationBtn) {
+                copyLocationBtn.addEventListener('click', handleCopyLocation);
+            }
+        }
+
+        // --- FUNCIONES DE INTERACCIÓN CON LA API (MANTENIDO) ---
+
+        async function markAsRead(messageId) {
+            try {
+                const response = await fetch(`${API_BASE_MESSAGES}/${messageId}/read`, {
+                    method: 'PATCH',
+                    headers: { 'Authorization': `Bearer ${userToken}` }
+                });
+                
+                if (response.ok) {
+                    loadMessages(); 
+                } 
+            } catch (error) {
+                console.error("Error al marcar como leído:", error);
+            }
+        }
+        
+        async function deleteMessage(messageId) {
+            try {
+                const response = await fetch(`${API_BASE_MESSAGES}/${messageId}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${userToken}` }
+                });
+                
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message);
+                    loadMessages(); 
+                } else {
+                    alert(data.message || "Fallo al eliminar el mensaje.");
+                }
+            } catch (error) {
+                alert("Error de comunicación con el servidor.");
+                console.error("Error al eliminar mensaje:", error);
+            }
+        }
+
+        /**
+         * Función: Extrae la ubicación Lat,Lng del cuerpo del mensaje.
+         * Busca el patrón "Ubicación: XXXXX"
+         */
+        function extractLocation(body) {
+            // Patrón para capturar "Ubicación: " seguido de cualquier texto (ej: -32.82724, -70.09213)
+            const locationMatch = body.match(/Ubicación: (.*)/i);
+            
+            return {
+                location: locationMatch ? locationMatch[1].trim() : null
+            };
+        }
+
+        /**
+         * CAMBIO: Muestra el modal de detalle y maneja el botón de copiar/usar ubicación.
+         */
+        function showDetailModal(message) {
+            document.getElementById('modal-subject').textContent = message.subject;
+            document.getElementById('modal-sender').textContent = message.sender_username;
+            document.getElementById('modal-timestamp').textContent = new Date(message.timestamp).toLocaleString('es-ES');
+            document.getElementById('modal-body').textContent = message.body;
+            
+            const locationContainer = document.getElementById('modal-location-container');
+            const locationValueElement = document.getElementById('modal-location-value');
+            const useInAlertBtn = document.getElementById('use-in-alert-btn');
+            
+            const { location } = extractLocation(message.body);
+            
+            if (location && currentUserRole === 'admin') {
+                locationValueElement.textContent = location;
+                locationContainer.classList.remove('hidden');
+                useInAlertBtn.classList.remove('hidden');
+                
+                // Almacena la ubicación en el botón para usarla después
+                useInAlertBtn.dataset.location = location;
+            } else {
+                locationContainer.classList.add('hidden');
+                useInAlertBtn.classList.add('hidden');
+            }
+            
+            document.getElementById('messageDetailModal').classList.add('flex');
+            document.getElementById('messageDetailModal').classList.remove('hidden');
+        }
+        
+        // --- NUEVAS FUNCIONALIDADES DE UBICACIÓN ---
+
+        /**
+         * Maneja la copia de la ubicación al portapapeles.
+         */
+        function handleCopyLocation(e) {
+            const locationValue = document.getElementById('modal-location-value').textContent;
+            
+            navigator.clipboard.writeText(locationValue).then(() => {
+                const btn = e.currentTarget;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '¡Copiado! ✅';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                }, 1500);
+            }).catch(err => {
+                console.error('Error al copiar al portapapeles:', err);
+                alert('Fallo al copiar la ubicación. Intente manualmente.');
+            });
+        }
+        
+        /**
+         * Maneja el flujo de "Usar en Alerta".
+         */
+        function handleUseInAlert(e) {
+            const locationToPaste = e.currentTarget.dataset.location;
+
+            // 1. Cerrar el modal de detalle
+            document.getElementById('messageDetailModal').classList.remove('flex');
+            document.getElementById('messageDetailModal').classList.add('hidden');
+            
+            // 2. Abrir el modal de alerta global (si existe la instancia)
+            if (globalAlertModalInstance) {
+                globalAlertModalInstance.show();
+            } else {
+                alert("El modal de alerta no está inicializado. No se puede continuar.");
+                return;
+            }
+
+            // 3. Pegar la ubicación en el campo correcto
+            document.getElementById("alertLocation").value = locationToPaste;
+            
+            // 4. Activar el checkbox y mostrar los campos de ubicación
+            requireLocationCheck.checked = true;
+            handleLocationRequirement(); // Llamar a la función para actualizar la UI
+
+            // Opcional: enfocar el asunto para empezar a redactar
+            document.getElementById("alertSubject").focus();
+        }
+
+
+        // 2. --- LÓGICA DE ALERTA GLOBAL CONDICIONAL (ADMIN) (MANTENIDO) ---
+
+        const globalAlertForm = document.getElementById("globalAlertForm");
+        const alertSubjectInput = document.getElementById("alertSubject");
+        const alertMessageInput = document.getElementById("alertMessage");
+        const requireLocationCheck = document.getElementById("requireLocationCheck");
+        const locationFieldsDiv = document.getElementById("locationFields");
+        const locationRequirementSpan = document.getElementById("locationRequirement");
+        const alertLocationInput = document.getElementById("alertLocation"); 
+        
+        // alertPhotoInput ya no se usa, pero se mantuvo la variable para referencia histórica.
+        // const alertPhotoInput = document.getElementById("alertPhoto"); // Eliminado del HTML
+
+        function handleLocationRequirement() {
+            const isChecked = requireLocationCheck.checked;
+            locationFieldsDiv.style.display = isChecked ? 'block' : 'none';
+            locationRequirementSpan.innerText = isChecked ? 'Obligatorio' : 'Opcional';
+            if (!isChecked) {
+                alertLocationInput.value = "";
+                // No se necesita limpiar alertPhotoInput porque ya no existe.
+            }
+        }
+
+        requireLocationCheck.addEventListener('change', handleLocationRequirement);
+
+        function checkAdminStatus() {
+            if (currentUserRole === 'admin') {
+                document.getElementById('showGlobalAlertModalBtn').style.display = 'block';
+            }
+        }
+        
+        globalAlertForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+        
+            const requiresLocation = requireLocationCheck.checked;
+            const subject = alertSubjectInput.value.trim() || (requiresLocation ? 'ALERTA DE INCIDENTE' : 'AVISO ADMINISTRATIVO');
+            const message = alertMessageInput.value.trim();
+        
+            if (!message) {
+                alert("El cuerpo del mensaje es obligatorio.");
+                return;
+            }
+            
+            let lat = null;
+            let lon = null;
+            // let photo = null; // Eliminado
+            
+            if (requiresLocation) {
+                const locationValue = alertLocationInput.value.trim();
+                
+                if (!locationValue) {
+                    alert("⚠️ La ubicación es obligatoria porque marcaste que es un incidente específico.");
+                    return;
+                }
+
+                const locationParts = locationValue.split(',').map(part => part.trim());
+                if (locationParts.length !== 2 || isNaN(parseFloat(locationParts[0])) || isNaN(parseFloat(locationParts[1]))) {
+                    alert("⚠️ El formato de ubicación debe ser: LATITUD, LONGITUD (Ej: -32.82724, -70.09213).");
+                    return;
+                }
+
+                lat = parseFloat(locationParts[0]);
+                lon = parseFloat(locationParts[1]);
+                // photo = alertPhotoInput.value.trim() || null; // Eliminado
+            }
+            
+            const alertData = {
+                subject: subject,
+                body: message,
+                latitude: lat, 
+                longitude: lon, 
+                photo_url: null // Siempre null
+            };
+        
+            try {
+                const response = await fetch('/api/messages/alert', { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userToken}` 
+                    },
+                    body: JSON.stringify(alertData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    let successMsg = `✅ Alerta enviada a todos los usuarios.`;
+                    if (requiresLocation && result.map_point_id) {
+                        successMsg += ` Punto de mapa creado con ID: ${result.map_point_id}`;
+                    }
+                    alert(successMsg);
+                    loadMessages(); 
+                } else {
+                    throw new Error(result.message || "Error desconocido al crear la alerta.");
+                }
+                
+            } catch (error) {
+                console.error("Error al enviar el aviso:", error);
+                alert(`❌ Error al enviar el aviso: ${error.message}`);
+            }
+        
+            if (globalAlertModalInstance) {
+                globalAlertModalInstance.hide();
+            }
+            globalAlertForm.reset();
+            requireLocationCheck.checked = false; 
+            handleLocationRequirement();
+        });
+
+
+        // 3. --- INICIALIZACIÓN Y EVENTOS GENERALES (MANTENIDO) ---
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMessages();
+            handleLocationRequirement(); 
+
+            // **SOLUCIÓN AL ERROR DEL MODAL**
+            setTimeout(() => {
+                const modalElement = document.getElementById('globalAlertModal');
+                if (modalElement && typeof bootstrap !== 'undefined') {
+                    // 1. Inicializar la instancia del Modal de Bootstrap
+                    globalAlertModalInstance = new bootstrap.Modal(modalElement);
+                    
+                    // 2. Asignar el evento click al botón DESPUÉS de tener la instancia
+                    document.getElementById('showGlobalAlertModalBtn').addEventListener('click', () => {
+                        globalAlertModalInstance.show();
+                    });
+
+                    // 3. Mostrar el botón si el usuario es admin
+                    checkAdminStatus();
+                } else {
+                    console.warn("Bootstrap JS no está cargado o el modal no existe. El botón 'Crear Alerta Global' no funcionará.");
+                    checkAdminStatus(); 
+                }
+            }, 100); 
+
+            document.getElementById("logoutBtn").addEventListener("click", () => {
+                localStorage.clear();
+                window.location.href = "/";
+            });
+        });
+    </script>
+
+</body>
+</html>

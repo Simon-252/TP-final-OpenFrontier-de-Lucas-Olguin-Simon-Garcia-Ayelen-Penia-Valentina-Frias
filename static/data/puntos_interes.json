@@ -4,20 +4,98 @@
         "lat": -32.82724,
         "lng": -70.09213,
         "address": "Paso Internacional Los Libertadores, Los Andes, Valparaíso, Chile",
-        "iconType": "frontera"
+        "iconType": "frontera",
+        "type": "frontera",
+        "color": "#619B8A"
     },
     {
         "name": "Posada Del Glaciar",
         "lat": -32.8142288,
         "lng": -70.0482002,
         "address": "Ruta Nacional 7, M5545 Las Cuevas, Mendoza, Argentina",
-        "iconType": "hotel"
+        "iconType": "hotel",
+        "type": "Hotel",
+        "color": "#1A535C"
     },
     {
         "name": "Ayelen Hotel de Montana",
         "lat": -32.8420898,
         "lng": -69.8383776,
         "address": "Ruta 7, km 1212, Los Penitentes, Mendoza, Argentina",
-        "iconType": "hotel"
+        "iconType": "hotel",
+        "type": "Hotel",
+        "color": "#1A535C"
+    },
+    {
+        "name": "Río de las Cuevas",
+        "lat": -32.811158,
+        "lng": -70.059014,
+        "address": "Cordillera Principal, Provincia de Mendoza, Argentina",
+        "iconType": "río_montaña",
+        "type": "Lugar Natural",
+        "color": "#00B5B7"
+    },
+    {
+        "name": "Cristo Redentor de los Andes",
+        "lat": -32.825381,
+        "lng": -70.070853,
+        "address": "Paso Internacional Los Libertadores, Los Andes, Valparaíso, Chile",
+        "iconType": "monumento",
+        "type": "Monumento"
+    },
+    {
+        "name": "Estacionamiento",
+        "lat": -32.813841,
+        "lng": -70.048564,
+        "address": "Ruta Nacional 7, Km 1210, Mendoza, Argentina",
+        "iconType": "estacionamiento",
+        "type": "Playa de Estacionamiento",
+        "color": "#A5A5A5"
+    },
+    {
+        "name": "Peaje/Control de Las Cuevas",
+        "lat": -32.806399,
+        "lng": -70.067146,
+        "address": "Ruta Nacional 7 (RN7), Las Cuevas, Mendoza, Argentina",
+        "iconType": "peaje_control",
+        "type": "Peaje/Control",
+        "color": "#619B8A"
+    },
+    {
+        "name": "Restaurante Bife de Chorizo",
+        "lat": -32.8065935,
+        "lng": -70.067609,
+        "address": "Ruta Nacional 7 (RN7), Las Cuevas, Mendoza, Argentina",
+        "iconType": "restaurante",
+        "type": "Restaurante",
+        "color": "#EE6352"
+    },
+    {
+        "name": "La Caballeriza",
+        "lat": -32.8144359,
+        "lng": -70.0492747,
+        "address": "Ruta Nacional 7 (RN7), Las Cuevas, Mendoza, Argentina",
+        "iconType": "restaurante",
+        "type": "Restaurante",
+        "color": "#EE6352"
+    },
+    {
+        "name": "Restaurant Nido de Condores",
+        "lat": -32.8137906,
+        "lng": -70.0496209,
+        "address": "RN7 8, Las Cuevas, Mendoza, Argentina",
+        "iconType": "restaurante",
+        "type": "Restaurante",
+        "color": "#EE6352"
+    },
+    {
+        "name": "Artesian gifts",
+        "lat": -32.8137794,
+        "lng": -70.0479085,
+        "address": "Ruta Nacional 7 (RN7), Las Cuevas, Mendoza, Argentina",
+        "iconType": "tienda_regalos",
+        "type": "Tienda de Regalos",
+        "color": "#FFAD00"
     }
+    
 ]

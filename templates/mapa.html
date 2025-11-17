@@ -16,23 +16,6 @@
     </style>
 </head>
 <body class="p-4">
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Mapa del Paso</a>
-            <a href="/" class="btn btn-outline-success me-2">Página Principal</a> 
-            <a href="/panel_clima_y_pasos" class="btn btn-outline-info me-2">Panel de Clima y Estado del paso</a>
-            <button id="logoutBtn" class="nav-button button-danger">Cerrar sesión</button>
-
-        </div>
-    </nav>
-    
-    <div class="container">
-        <h1>Ubicaciones en el Mapa</h1>
-        <p>Este mapa muestra puntos de interés o usuarios (ejemplo).</p>
-        
-        <div id="mapa_leaflet"></div>
-    </div> 
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -41,7 +24,7 @@
         // Coordenadas del Paso Cristo Redentor (Los Libertadores)
         const CRISTO_REDENTOR_LAT = -32.825;
         const CRISTO_REDENTOR_LNG = -70.089;
-        const INICIAL_ZOOM = 10;
+        const INICIAL_ZOOM = 30;
         const POI_FILE = '/static/data/puntos_interes.json';
 
         // 1. Inicializar el mapa centrado en el Paso Fronterizo
@@ -73,22 +56,55 @@
             shadowSize: [41, 41]
         });
 
-        // 5. Función para agregar marcadores (separada para claridad)
+        // 5. Crear el ícono para ALERTA/INCIDENTE (Naranja/Gold)
+        const incidentIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        // 6. Función para agregar marcadores (separada para claridad)
         function addMarkers(pointsOfInterest) {
             pointsOfInterest.forEach(poi => {
-                let iconToUse = poi.iconType === "frontera" ? borderIcon : serviceIcon;
+                let iconToUse;
+                let markerInfo;
+                
+                // --- LÓGICA DE SELECCIÓN DE ICONO ---
+                if (poi.iconType === "frontera") {
+                    iconToUse = borderIcon;
+                    markerInfo = 'Punto de Control';
+                } else if (poi.iconType === "alerta_incidente") { // <-- NUEVA LÓGICA
+                    iconToUse = incidentIcon;
+                    markerInfo = `⚠️ **ALERTA DE INCIDENTE** ⚠️`;
+                } else {
+                    iconToUse = serviceIcon;
+                    markerInfo = 'Servicio Cercano';
+                }
 
                 const marker = L.marker([poi.lat, poi.lng], { icon: iconToUse }).addTo(map);
                 
-                marker.bindPopup(`
-                    <b>${poi.name}</b><br>
-                    ${poi.address}<br>
-                    <i>${poi.iconType === 'frontera' ? 'Punto de Control' : 'Servicio Cercano'}</i>
-                `);
+                // --- CONSTRUCCIÓN DEL POPUP (se adapta al nuevo tipo de alerta) ---
+                let popupContent = `<b>${poi.name}</b><br>`;
+
+                if (poi.iconType === "alerta_incidente" && poi.body_alert) {
+                    // Si es una alerta, muestra el cuerpo del mensaje
+                    popupContent += `Mensaje: ${poi.body_alert}<br>`;
+                }
+
+                popupContent += `${poi.address}<br><i>${markerInfo}</i>`;
+                
+                if (poi.photo_url) {
+                    popupContent += `<br><img src="${poi.photo_url}" alt="Foto del incidente" style="width:100px; height:auto; margin-top: 5px;">`;
+                }
+                
+                marker.bindPopup(popupContent);
             });
         }
 
-        // 6. Cargar los datos de los POI usando Fetch
+        // 7. Cargar los datos de los POI usando Fetch
         fetch(POI_FILE)
             .then(response => {
                 if (!response.ok) {

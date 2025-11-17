@@ -1,22 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
 
-{% block title %}
-  About Us
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenFrontier - Conócenos</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/layout.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <style>
+        .about-page-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Alinea arriba */
+            min-height: 100vh;
+            padding: 50px 20px;
+            text-align: center;
+            color: var(--text-primary); /* Usa tu color de texto principal */
+            background-color: var(--bg-main); /* Usa tu fondo principal */
+        }
 
-{% block body %}
-<div class="container p-5">
-  <div class="card bg-dark text-white">
-    <div class="card-body">
-      <h1 class="card-title">About This Project</h1>
-      <p class="card-text">
-        This is a simple Flask CRUD application using SQLAlchemy.
-        It was built to practice the basics of creating, reading, updating and deleting records from a database.
-      </p>
-      <p class="card-text">
-        Created by Simon Garcia, Ayelen Peña, Lucas Olguin, Valentina Frias.
-      </p>
-      <a href="/" class="btn btn-primary">Back</a>
+        .about-header {
+            margin-bottom: 40px;
+        }
+
+        .about-header .home-link {
+            font-size: 1.1em;
+            color: var(--text-secondary); /* Color secundario para el enlace "Home" */
+            text-decoration: none;
+            position: absolute; /* Para ubicarlo como en la captura */
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .about-title {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .about-subtitle {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+        }
+
+        .about-logo-circle {
+            /* Contenedor circular */
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 1px hidden var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px auto;
+            /* Eliminamos font-size: 1.5em; ya que contendrá una imagen */
+            overflow: hidden; /* Asegura que la imagen se recorte si es necesario */
+        }
+        
+        /* 🔑 Nuevo estilo para la imagen dentro del círculo */
+        .about-logo-circle img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            /* object-fit: cover; // Opcional: Asegura que la imagen cubra todo el círculo sin distorsionarse */
+            border-radius: 50%; /* Opcional: Para mantener el borde curvo si la imagen no es un cuadrado perfecto */
+        }
+
+        .about-description {
+            max-width: 600px;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="about-page-container">
+        
+        <div class="about-header">
+            <a href="{{ url_for('index') }}" class="home-link">Inicio</a>
+        </div>
+
+        <div class="content-box">
+            <h1 class="about-title">About</h1>
+            <p class="about-subtitle">Meet our company</p>
+
+            <div class="about-logo-circle">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo de OpenFrontier">
+            </div>
+
+            <p class="about-description">
+                OpenFrontier es una aplicación web desarrollada con Flask (Python) que proporciona
+                información en tiempo real sobre el estado del Paso Internacional Cristo Redentor, principal
+                conexión terrestre entre Mendoza (Argentina) y Chile.
+            </p>
+            
+            <p class="about-description" style="margin-top: 40px;">
+                Desarrollado por: Simon Garcia, Ayelen Peña, Lucas Olguin, Valentina Frias.
+            </p>
+            
+        </div>
     </div>
-  </div>
-</div>
-{% endblock %}
+
+</body>
+
+</html>

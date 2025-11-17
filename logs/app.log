@@ -165,3 +165,523 @@ INFO: 2025-11-11 16:45:52,451 - app:125 - 🔧 Ejecutando job de actualización 
 INFO: 2025-11-11 17:53:27,459 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
 INFO: 2025-11-11 17:53:37,787 - app:113 - 🚪 Usuario cerró sesión: simon (ID: 8d35f0c5-42a2-4c2b-9de9-4f2465793dbc)
 INFO: 2025-11-11 17:53:43,735 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 8d35f0c5-42a2-4c2b-9de9-4f2465793dbc (simon)
+INFO: 2025-11-11 19:39:06,173 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 19:40:12,721 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 19:40:40,334 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 63c5a8bb-4497-42df-820f-385255097e3f)
+INFO: 2025-11-11 19:40:46,881 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID dc7fcaea-1548-4bfc-beae-b42cadac95d1 (Lucas)
+INFO: 2025-11-11 19:40:50,100 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID dc7fcaea-1548-4bfc-beae-b42cadac95d1 (Lucas)
+INFO: 2025-11-11 19:40:50,102 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID dc7fcaea-1548-4bfc-beae-b42cadac95d1 (Lucas)
+INFO: 2025-11-11 19:42:13,469 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: dc7fcaea-1548-4bfc-beae-b42cadac95d1)
+INFO: 2025-11-11 19:45:24,743 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID d23a0657-2e11-4185-9788-7d812fe2e6eb (Ayelén)
+INFO: 2025-11-11 19:45:53,674 - app:113 - 🚪 Usuario cerró sesión: Ayelén (ID: d23a0657-2e11-4185-9788-7d812fe2e6eb)
+INFO: 2025-11-11 19:45:55,792 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID dc7fcaea-1548-4bfc-beae-b42cadac95d1 (Lucas)
+INFO: 2025-11-11 19:46:02,057 - app:253 - 🟢 Admin Lucas (ID: dc7fcaea-1548-4bfc-beae-b42cadac95d1) cambió el rol de Ayelén (ID: d23a0657-2e11-4185-9788-7d812fe2e6eb) de 'user' a 'admin'.
+INFO: 2025-11-11 19:46:14,029 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: dc7fcaea-1548-4bfc-beae-b42cadac95d1)
+INFO: 2025-11-11 19:47:15,944 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID 356b922c-57dc-47aa-ada9-adc3212029cf (simon)
+INFO: 2025-11-11 19:47:56,057 - app:113 - 🚪 Usuario cerró sesión: simon (ID: 356b922c-57dc-47aa-ada9-adc3212029cf)
+INFO: 2025-11-11 19:50:14,241 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-11 19:57:36,674 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 19:57:37,034 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID df9299aa-c737-447d-992c-136dcc820445 (admin_test)
+INFO: 2025-11-11 19:57:37,261 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID b2210dc0-91df-4b7a-9690-66e85ed90c99 (user_to_mod)
+INFO: 2025-11-11 19:57:37,280 - app:253 - 🟢 Admin admin_test (ID: df9299aa-c737-447d-992c-136dcc820445) cambió el rol de user_to_mod (ID: b2210dc0-91df-4b7a-9690-66e85ed90c99) de 'user' a 'admin'.
+INFO: 2025-11-11 19:57:37,292 - app:322 - 🟢 Admin admin_test (ID: df9299aa-c737-447d-992c-136dcc820445) cambió el estado de user_to_mod (ID: b2210dc0-91df-4b7a-9690-66e85ed90c99) de 'activa' a 'suspendida'.
+INFO: 2025-11-11 19:57:37,309 - app:284 - 🟢 Admin admin_test (ID: df9299aa-c737-447d-992c-136dcc820445) ELIMINÓ la cuenta del usuario: user_to_mod (ID: b2210dc0-91df-4b7a-9690-66e85ed90c99) y sus mensajes asociados.
+INFO: 2025-11-11 19:57:47,404 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 19:58:01,287 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+WARNING: 2025-11-11 19:58:18,618 - app:75 - 🔴 Intento de inicio de sesión fallido para el email: lucasolgui29@gmail.com
+WARNING: 2025-11-11 19:58:33,323 - app:75 - 🔴 Intento de inicio de sesión fallido para el email: simongarciadallape@gmail.com
+WARNING: 2025-11-11 19:58:58,085 - app:75 - 🔴 Intento de inicio de sesión fallido para el email: simongarciadallape@gmail.com
+WARNING: 2025-11-11 19:59:18,002 - app:75 - 🔴 Intento de inicio de sesión fallido para el email: simongarciadallape@gmail.com
+INFO: 2025-11-11 20:00:02,220 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID 2d1f9ffc-8c9a-4e9c-813b-4abd56ade526 (simon)
+INFO: 2025-11-11 20:00:35,697 - app:113 - 🚪 Usuario cerró sesión: simon (ID: 2d1f9ffc-8c9a-4e9c-813b-4abd56ade526)
+WARNING: 2025-11-11 20:00:49,199 - app:75 - 🔴 Intento de inicio de sesión fallido para el email: lucasolgui29@gmail.com
+WARNING: 2025-11-11 20:00:55,424 - app:75 - 🔴 Intento de inicio de sesión fallido para el email: lucasolgui29@gmail.com
+INFO: 2025-11-11 20:01:32,847 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:02:43,060 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID 74feab5f-eb06-4a22-82eb-37ede2097e4a (Lucas)
+INFO: 2025-11-11 20:03:27,463 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 74feab5f-eb06-4a22-82eb-37ede2097e4a)
+INFO: 2025-11-11 20:03:29,478 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 74feab5f-eb06-4a22-82eb-37ede2097e4a (Lucas)
+INFO: 2025-11-11 20:03:36,557 - app:253 - 🟢 Admin Lucas (ID: 74feab5f-eb06-4a22-82eb-37ede2097e4a) cambió el rol de simon (ID: 2d1f9ffc-8c9a-4e9c-813b-4abd56ade526) de 'user' a 'admin'.
+INFO: 2025-11-11 20:04:07,731 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:04:16,904 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:04:36,619 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 74feab5f-eb06-4a22-82eb-37ede2097e4a)
+INFO: 2025-11-11 20:10:38,894 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:20:41,936 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:21:30,612 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:24:19,246 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:26:44,837 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 74feab5f-eb06-4a22-82eb-37ede2097e4a (Lucas)
+INFO: 2025-11-11 20:28:59,028 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:29:50,307 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+WARNING: 2025-11-11 20:29:58,491 - app:75 - 🔴 Intento de inicio de sesión fallido para el email: lucasolgui29@gmail.com
+INFO: 2025-11-11 20:30:27,901 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:30:34,399 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:30:41,859 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID b3c14cd3-d095-42f6-b487-3a60cdbb4596 (Lucas)
+INFO: 2025-11-11 20:31:31,903 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:31:38,342 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: b3c14cd3-d095-42f6-b487-3a60cdbb4596)
+INFO: 2025-11-11 20:31:40,220 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID b3c14cd3-d095-42f6-b487-3a60cdbb4596 (Lucas)
+INFO: 2025-11-11 20:31:49,188 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: b3c14cd3-d095-42f6-b487-3a60cdbb4596)
+INFO: 2025-11-11 20:37:19,367 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID b3c14cd3-d095-42f6-b487-3a60cdbb4596 (Lucas)
+INFO: 2025-11-11 20:40:34,063 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: b3c14cd3-d095-42f6-b487-3a60cdbb4596)
+INFO: 2025-11-11 20:40:38,202 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 0272102a-57fc-487c-b421-24e86b501079 (Juan_Perez)
+INFO: 2025-11-11 20:41:33,295 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-11 20:44:22,522 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:44:22,851 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID a15bd7fe-464a-46a3-abea-ab8c80630b2c (admin_test)
+INFO: 2025-11-11 20:44:23,108 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID 10dc302d-36b1-4867-af66-a2dffa17d75c (user_to_mod)
+INFO: 2025-11-11 20:44:23,130 - app:253 - 🟢 Admin admin_test (ID: a15bd7fe-464a-46a3-abea-ab8c80630b2c) cambió el rol de user_to_mod (ID: 10dc302d-36b1-4867-af66-a2dffa17d75c) de 'user' a 'admin'.
+INFO: 2025-11-11 20:44:23,141 - app:322 - 🟢 Admin admin_test (ID: a15bd7fe-464a-46a3-abea-ab8c80630b2c) cambió el estado de user_to_mod (ID: 10dc302d-36b1-4867-af66-a2dffa17d75c) de 'activa' a 'suspendida'.
+INFO: 2025-11-11 20:44:23,160 - app:284 - 🟢 Admin admin_test (ID: a15bd7fe-464a-46a3-abea-ab8c80630b2c) ELIMINÓ la cuenta del usuario: user_to_mod (ID: 10dc302d-36b1-4867-af66-a2dffa17d75c) y sus mensajes asociados.
+INFO: 2025-11-11 20:46:19,652 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-11 20:46:35,642 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID a91d7db1-3463-49ed-a836-7a6a0560107b (Juan_Perez)
+INFO: 2025-11-13 15:37:56,198 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-13 15:38:38,132 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID a91d7db1-3463-49ed-a836-7a6a0560107b (Juan_Perez)
+INFO: 2025-11-13 15:47:57,710 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 15:57:57,702 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 16:04:13,492 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: a91d7db1-3463-49ed-a836-7a6a0560107b)
+INFO: 2025-11-13 16:04:17,173 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 74feab5f-eb06-4a22-82eb-37ede2097e4a (Lucas)
+INFO: 2025-11-13 16:07:57,706 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-13 16:07:57,706 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 16:17:57,713 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 16:27:57,705 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 16:37:57,711 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-13 16:37:57,711 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 16:47:57,710 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 16:57:57,716 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 17:07:57,712 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-13 17:07:57,712 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 17:17:57,714 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 17:27:57,710 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 17:35:47,659 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 74feab5f-eb06-4a22-82eb-37ede2097e4a (Lucas)
+INFO: 2025-11-13 17:36:02,199 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-13 17:46:11,864 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 17:56:11,863 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 18:06:11,853 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 18:06:11,853 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-13 18:16:11,867 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 18:26:11,858 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 18:36:11,862 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 18:36:11,862 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-13 20:22:33,828 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-13 20:32:35,204 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 20:33:25,583 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-13 20:43:26,887 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 20:53:26,882 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 21:03:26,890 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 21:03:26,890 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-13 21:13:26,879 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 21:14:47,263 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-13 21:24:48,632 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 21:34:48,633 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 21:44:48,627 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 21:44:48,627 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-13 23:44:48,623 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-13 23:44:48,623 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-13 23:54:48,622 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 00:04:48,625 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 00:14:48,621 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 00:14:48,621 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 00:24:48,629 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 00:34:48,624 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 00:39:16,530 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 00:49:17,650 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 00:59:17,651 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 01:09:17,651 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 01:09:17,651 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 01:19:17,649 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 01:29:17,657 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 01:39:17,653 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 01:39:17,653 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 01:49:17,656 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 01:59:17,650 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 14:21:08,774 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 14:31:10,277 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 14:41:10,276 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 14:51:10,279 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 14:51:10,280 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 15:08:32,625 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 15:18:34,095 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 15:28:34,099 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 15:38:34,085 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 15:38:34,085 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 15:48:34,084 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 15:58:34,092 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 16:08:34,096 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 16:08:34,096 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 16:18:34,085 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 16:28:34,093 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 16:38:34,091 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 16:38:34,091 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 16:48:34,095 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 16:58:34,087 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 17:08:34,098 - app:125 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 17:08:34,098 - app:119 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 17:18:27,129 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 17:19:43,749 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 17:26:31,121 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 17:36:32,028 - app:131 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 17:46:32,024 - app:131 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 17:56:32,026 - app:131 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 17:56:32,026 - app:125 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 18:06:32,028 - app:131 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 18:21:53,315 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 18:22:53,501 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 18:25:28,576 - app:85 -  Aplicación iniciada y sistema de logging rotativo configurado.
+WARNING: 2025-11-14 18:35:23,714 - app:75 - 🔴 Intento de inicio de sesión fallido para el email: lucasolgui29@gmail.com
+INFO: 2025-11-14 18:35:30,094 - app:131 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 18:45:30,103 - app:131 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 18:55:30,091 - app:131 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 18:55:30,091 - app:125 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 19:05:30,102 - app:131 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 19:08:22,407 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 19:18:23,609 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 19:25:30,646 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 19:27:24,659 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 19:37:25,461 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 19:47:25,460 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 19:57:25,463 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 19:57:25,463 - app:127 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 20:07:25,471 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 20:12:50,168 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 20:17:47,912 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 20:25:06,871 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 20:26:17,068 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 20:36:18,245 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 20:37:42,244 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 20:39:15,859 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 20:43:13,606 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 20:46:26,538 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 20:51:39,648 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 20:53:36,498 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 20:59:40,818 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 21:09:41,906 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 21:19:41,897 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 21:21:43,253 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 21:28:18,883 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 21:34:57,864 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 21:44:59,542 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 21:54:59,544 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 22:03:42,029 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-14 22:13:43,020 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 22:23:43,020 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 22:33:43,009 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 22:33:43,009 - app:127 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 22:43:43,019 - app:133 - 🔧 Ejecutando job de actualización de clima.
+WARNING: 2025-11-14 22:53:40,740 - app:75 - 🔴 Intento de inicio de sesión fallido para el email: lucasolgui29@gmail.com
+INFO: 2025-11-14 22:53:43,020 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 22:53:53,276 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID e071e2a6-0c33-4834-ba50-1af990d5d25a (lucas)
+INFO: 2025-11-14 22:54:58,005 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: e071e2a6-0c33-4834-ba50-1af990d5d25a)
+INFO: 2025-11-14 23:03:43,024 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 23:03:43,024 - app:127 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 23:13:43,023 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 23:23:43,014 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 23:33:43,022 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 23:33:43,022 - app:127 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-14 23:43:43,022 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-14 23:53:43,024 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 00:03:43,013 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 00:03:43,013 - app:127 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-15 10:43:54,792 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 10:53:56,330 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 11:10:13,865 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 12:20:15,570 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 12:30:15,568 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 12:40:15,577 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 12:40:15,577 - app:127 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-15 12:50:15,572 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 13:00:15,572 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 13:10:15,571 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 13:10:15,572 - app:127 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-15 13:20:15,570 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 13:30:15,566 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 14:20:15,575 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 14:30:15,574 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 14:32:23,873 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 14:42:25,180 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 14:52:25,193 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 15:02:25,188 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 15:02:25,188 - app:127 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-15 15:06:59,321 - app:86 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 15:17:00,409 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 15:27:00,400 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 15:37:00,407 - app:133 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 15:37:00,407 - app:127 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-15 16:13:17,014 - app:89 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 16:13:37,435 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID e071e2a6-0c33-4834-ba50-1af990d5d25a (lucas)
+INFO: 2025-11-15 16:13:53,762 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: e071e2a6-0c33-4834-ba50-1af990d5d25a)
+INFO: 2025-11-15 16:14:08,547 - app:89 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 16:14:14,254 - app:89 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 16:14:31,818 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 0f5d10fc-645b-4aa0-8a97-568ce142fa46 (Juan_Perez)
+INFO: 2025-11-15 16:19:32,133 - app:89 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 16:22:15,961 - app:89 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 16:27:41,426 - app:88 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 16:30:00,682 - app:88 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 16:30:29,264 - app:88 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 16:32:11,802 - app:88 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 16:42:13,397 - app:146 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 16:52:13,400 - app:146 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 17:02:13,394 - app:146 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 17:02:13,394 - app:140 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-15 17:12:13,398 - app:146 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 20:38:03,509 - app:91 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 20:38:15,905 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 0f5d10fc-645b-4aa0-8a97-568ce142fa46 (Juan_Perez)
+INFO: 2025-11-15 20:39:10,967 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 0f5d10fc-645b-4aa0-8a97-568ce142fa46)
+INFO: 2025-11-15 20:39:15,228 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID e071e2a6-0c33-4834-ba50-1af990d5d25a (lucas)
+INFO: 2025-11-15 20:45:24,879 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: e071e2a6-0c33-4834-ba50-1af990d5d25a)
+INFO: 2025-11-15 20:45:32,017 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 0f5d10fc-645b-4aa0-8a97-568ce142fa46 (Juan_Perez)
+INFO: 2025-11-15 20:47:21,241 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 0f5d10fc-645b-4aa0-8a97-568ce142fa46)
+INFO: 2025-11-15 20:47:27,329 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID e071e2a6-0c33-4834-ba50-1af990d5d25a (lucas)
+INFO: 2025-11-15 20:48:05,540 - app:208 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 20:49:25,334 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: e071e2a6-0c33-4834-ba50-1af990d5d25a)
+INFO: 2025-11-15 20:49:28,656 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 0f5d10fc-645b-4aa0-8a97-568ce142fa46 (Juan_Perez)
+INFO: 2025-11-15 20:50:28,569 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 0f5d10fc-645b-4aa0-8a97-568ce142fa46)
+INFO: 2025-11-15 20:52:12,978 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 0f5d10fc-645b-4aa0-8a97-568ce142fa46 (Juan_Perez)
+INFO: 2025-11-15 20:58:05,538 - app:208 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 21:06:43,344 - app:94 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 21:07:30,776 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 0f5d10fc-645b-4aa0-8a97-568ce142fa46)
+INFO: 2025-11-15 21:07:34,602 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID e071e2a6-0c33-4834-ba50-1af990d5d25a (lucas)
+INFO: 2025-11-15 21:16:44,811 - app:220 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 21:21:44,664 - app:94 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 21:23:01,828 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: e071e2a6-0c33-4834-ba50-1af990d5d25a)
+INFO: 2025-11-15 21:23:09,795 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 0f5d10fc-645b-4aa0-8a97-568ce142fa46 (Juan_Perez)
+INFO: 2025-11-15 21:23:45,079 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 0f5d10fc-645b-4aa0-8a97-568ce142fa46)
+INFO: 2025-11-15 21:23:49,523 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID e071e2a6-0c33-4834-ba50-1af990d5d25a (lucas)
+INFO: 2025-11-15 21:24:54,299 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: e071e2a6-0c33-4834-ba50-1af990d5d25a)
+INFO: 2025-11-15 21:31:21,291 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID e071e2a6-0c33-4834-ba50-1af990d5d25a (lucas)
+INFO: 2025-11-15 21:31:46,085 - app:220 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 21:41:46,088 - app:220 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 21:50:13,792 - app:100 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 21:50:37,748 - app:100 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 21:50:44,924 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: e071e2a6-0c33-4834-ba50-1af990d5d25a)
+INFO: 2025-11-15 21:50:47,524 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID e071e2a6-0c33-4834-ba50-1af990d5d25a (lucas)
+INFO: 2025-11-15 22:00:39,303 - app:231 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 22:02:49,900 - app:91 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 22:03:11,881 - app:91 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 22:03:19,018 - app:91 -  Aplicación iniciada y sistema de logging rotativo configurado.
+WARNING: 2025-11-15 22:03:33,971 - app:75 - 🔴 Intento de inicio de sesión fallido para el email: lucasolgui29@gmail.com
+INFO: 2025-11-15 22:03:49,938 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID 716bf0a1-b7dc-43d9-952a-e0e747cdfaf2 (Lucas)
+INFO: 2025-11-15 22:03:56,822 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 716bf0a1-b7dc-43d9-952a-e0e747cdfaf2)
+INFO: 2025-11-15 22:05:57,736 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 716bf0a1-b7dc-43d9-952a-e0e747cdfaf2 (Lucas)
+INFO: 2025-11-15 22:13:20,386 - app:118 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 22:23:20,381 - app:118 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 22:24:38,770 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 716bf0a1-b7dc-43d9-952a-e0e747cdfaf2)
+INFO: 2025-11-15 23:29:21,675 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 23:30:16,032 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 23:30:19,740 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-15 23:40:20,990 - app:461 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-15 23:50:20,987 - app:461 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 00:00:20,987 - app:461 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 00:00:20,988 - app:449 - 🔧 Ejecutando job de actualización de estado de paso.
+WARNING: 2025-11-16 00:05:21,464 - app:75 - 🔴 Intento de inicio de sesión fallido para el email: lucasolgui29@gmail.com
+INFO: 2025-11-16 00:05:35,823 - app:57 - 🟢 Nuevo usuario registrado exitosamente: ID 258f68a7-e014-460a-bcb6-2634e36034d2 (lucas)
+INFO: 2025-11-16 00:10:20,993 - app:461 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 00:20:20,994 - app:461 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 00:30:20,995 - app:461 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 00:30:20,995 - app:449 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 00:40:12,754 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 00:40:20,991 - app:461 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 00:40:24,220 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 00:42:28,444 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 00:44:02,646 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 00:50:20,998 - app:461 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 00:59:04,388 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 00:59:15,843 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 01:00:20,993 - app:461 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 01:00:20,993 - app:449 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 01:03:37,049 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 01:03:53,765 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 01:07:49,972 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 01:13:54,827 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 01:17:32,396 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 01:18:24,474 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 01:18:33,238 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (lucas)
+INFO: 2025-11-16 01:22:48,966 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 01:26:27,331 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (lucas)
+INFO: 2025-11-16 01:27:33,715 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 01:35:50,289 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 01:35:55,497 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 01:37:33,728 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 01:38:34,569 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 01:44:10,550 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 01:44:19,317 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 01:46:39,286 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 01:51:07,047 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 02:01:08,457 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 02:11:08,444 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 02:21:08,455 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 02:21:08,455 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 02:28:10,029 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 02:28:14,176 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (lucas)
+INFO: 2025-11-16 02:31:08,455 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 02:36:06,390 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 02:36:08,528 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (lucas)
+INFO: 2025-11-16 02:41:08,453 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 02:51:08,453 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 02:51:08,453 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 02:54:09,482 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 14:31:37,743 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 14:41:38,891 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 14:51:38,891 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 14:56:18,197 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (lucas)
+INFO: 2025-11-16 15:01:38,901 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 15:01:38,901 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 15:11:38,901 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 15:21:38,897 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 15:22:22,572 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 15:22:24,321 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (lucas)
+INFO: 2025-11-16 15:31:19,926 - app:113 - 🚪 Usuario cerró sesión: lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 15:31:22,234 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (lucas)
+INFO: 2025-11-16 15:31:38,894 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 15:31:38,894 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 15:41:38,901 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 15:51:38,905 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 16:01:38,891 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 16:01:38,891 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 16:11:38,900 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 16:13:02,188 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 16:13:05,664 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 16:21:38,902 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 16:31:38,893 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 16:31:38,893 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 16:38:11,227 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 16:38:16,509 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 16:41:38,894 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 16:43:26,025 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 16:43:29,931 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 16:43:52,746 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 16:43:59,874 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 16:47:45,041 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 16:47:49,312 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 16:48:09,826 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 16:48:35,553 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 16:48:39,861 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 16:48:52,741 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 16:48:57,379 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 16:52:58,004 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 16:53:01,448 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 16:58:10,947 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 19:08:10,951 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 19:18:10,945 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 19:18:10,945 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 19:26:10,263 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 19:28:10,948 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 19:31:01,984 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 19:31:07,489 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 19:38:10,952 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 19:48:10,945 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 19:48:10,946 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 19:58:10,950 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 20:08:10,946 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 20:18:10,950 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 20:18:10,950 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 20:28:10,938 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 20:38:10,944 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 20:47:39,130 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 20:48:10,945 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 20:48:10,945 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 20:49:12,276 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 20:49:16,384 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 20:50:09,590 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 20:50:27,342 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 20:51:24,674 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 20:52:02,157 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 20:53:55,968 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 20:54:03,950 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 20:58:10,944 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 21:03:44,227 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 21:03:52,605 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 21:07:37,226 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 21:11:10,364 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 21:11:19,212 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 21:13:45,350 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 21:23:45,351 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 21:23:53,676 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 21:26:46,102 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 21:26:55,775 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 21:27:28,989 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 21:29:50,793 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 21:32:03,574 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 21:32:11,998 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 21:33:45,362 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 21:33:45,362 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-16 21:43:45,363 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 21:53:45,355 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 21:55:11,524 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 21:55:38,715 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-16 21:55:46,498 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-16 21:57:26,134 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-16 21:57:32,737 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 22:05:13,243 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 22:10:53,630 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 22:15:13,246 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 22:15:50,872 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 22:25:52,011 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 22:35:52,008 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 23:25:52,009 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 23:27:32,631 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 23:29:42,802 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 23:29:52,489 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 23:32:17,989 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 23:37:49,970 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-16 23:39:44,079 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-16 23:40:27,361 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-16 23:40:35,407 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 12:33:10,995 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-17 12:33:49,545 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 12:34:23,146 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-17 12:34:26,642 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-17 12:43:14,890 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 12:44:33,769 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-17 12:44:40,847 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 12:45:03,221 - app:253 - 🟢 Admin Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2) cambió el rol de Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df) de 'user' a 'admin'.
+INFO: 2025-11-17 12:45:09,276 - app:253 - 🟢 Admin Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2) cambió el rol de Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df) de 'admin' a 'user'.
+INFO: 2025-11-17 12:45:20,260 - app:322 - 🟢 Admin Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2) cambió el estado de Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df) de 'activa' a 'suspendida'.
+INFO: 2025-11-17 12:45:28,655 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+WARNING: 2025-11-17 12:45:33,659 - app:80 - 🔴 Intento de inicio de sesión bloqueado: Cuenta suspendida para el email: juan.perez@example.com
+INFO: 2025-11-17 12:45:43,014 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 12:45:48,179 - app:322 - 🟢 Admin Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2) cambió el estado de Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df) de 'suspendida' a 'activada'.
+INFO: 2025-11-17 12:46:20,972 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-17 12:46:24,657 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-17 12:47:05,325 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-17 12:47:09,406 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 12:53:14,892 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 12:59:55,086 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 13:03:14,894 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-17 13:03:14,895 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 13:15:14,110 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 687d11eb-0d33-4537-b900-897c421254df (Juan_Perez)
+INFO: 2025-11-17 13:15:37,136 - app:113 - 🚪 Usuario cerró sesión: Juan_Perez (ID: 687d11eb-0d33-4537-b900-897c421254df)
+INFO: 2025-11-17 13:15:41,374 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 14:03:14,895 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-17 14:03:14,895 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 14:13:14,891 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 14:14:19,346 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-17 14:14:22,930 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 14:15:32,473 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-17 14:15:34,594 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 14:20:27,039 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-17 14:20:29,443 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 14:23:14,932 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 14:33:14,889 - app:436 - 🔧 Ejecutando job de actualización de estado de paso.
+INFO: 2025-11-17 14:33:14,904 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 14:38:39,479 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-17 14:38:42,612 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 14:43:14,899 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 14:53:14,906 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 15:00:20,193 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-17 15:01:04,999 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-17 15:01:34,900 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 15:10:21,292 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 15:15:07,232 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-17 15:16:09,292 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-17 15:16:11,167 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 15:17:33,610 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-17 15:20:22,260 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-17 15:20:24,043 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 15:27:34,848 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 16:03:13,958 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-17 16:13:15,270 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 16:23:15,278 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 16:28:39,550 - app:92 - 🟢 Inicio de sesión exitoso: Usuario ID 258f68a7-e014-460a-bcb6-2634e36034d2 (Lucas)
+INFO: 2025-11-17 16:31:48,908 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-17 16:41:49,990 - app:448 - 🔧 Ejecutando job de actualización de clima.
+INFO: 2025-11-17 16:46:18,073 - app:113 - 🚪 Usuario cerró sesión: Lucas (ID: 258f68a7-e014-460a-bcb6-2634e36034d2)
+INFO: 2025-11-17 16:47:06,635 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-17 16:47:28,351 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.
+INFO: 2025-11-17 16:47:37,155 - app:199 -  Aplicación iniciada y sistema de logging rotativo configurado.

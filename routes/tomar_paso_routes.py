@@ -83,7 +83,7 @@ def actualizar_estado():
             if estado_tag:
                 estado = estado_tag.get_text(strip=True)
                 
-                # 🚨 NUEVA LÓGICA: Buscamos el nodo de texto inmediatamente adyacente
+                #NUEVA LÓGICA: Buscamos el nodo de texto inmediatamente adyacente
                 # que contiene el tiempo ("Actualizado hace X horas...")
                 tiempo_nodo = estado_tag.next_sibling
                 
@@ -95,7 +95,7 @@ def actualizar_estado():
             else:
                 estado = "Estado no encontrado"
             
-            # 2. 🔍 Extracción del HORARIO
+            # 2.Extracción del HORARIO
             horario_tag = soup.find('strong', string=re.compile(r"Horarios de atención:", re.IGNORECASE))
             
             if horario_tag:
@@ -125,7 +125,7 @@ def actualizar_estado():
             paso = Paso(nombre="Cristo Redentor")
 
         paso.estado = estado
-        paso.actualizado = tiempo_actualizacion # ⬅️ Guardamos el string del tiempo de actualización
+        paso.actualizado = tiempo_actualizacion # Guardamos el string del tiempo de actualización
         paso.horario_atencion = horario_atencion 
         paso.fuente = URL
         paso.timestamp = db.func.now()

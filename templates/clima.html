@@ -1,0 +1,58 @@
+<script>
+    // PASO ID.
+    const PASO_ID = '75c05ec9-3ffe-496e-8b0f-ed000f4e6c3a'; 
+
+    // Simplificamos getDayName al máximo para evitar fallos de Date/Locale
+    function getDayName(dateString) {
+        try {
+            const date = new Date(dateString + 'T12:00:00'); 
+            return date.toLocaleDateString('es-ES', { weekday: 'long' });
+        } catch (e) {
+            console.error("Error en getDayName:", e);
+            return "Día Error";
+        }
+    }
+
+    // Simplificamos createWeatherCard al máximo
+    function createWeatherCard(data) {
+        try {
+            const dayName = getDayName(data.fecha_pronostico).replace(/^(.)/, (match) => match.toUpperCase());
+            return `<div class="weather-card"><h3 class="day-title">${dayName}</h3><p>Renderizado OK</p></div>`;
+        } catch (e) {
+            console.error("Error en createWeatherCard:", e);
+            return `<div>Error al crear tarjeta</div>`;
+        }
+    }
+
+    // Función de Fetch
+    async function fetchWeatherForecast() {
+        console.log("🔥 Ejecutando fetch desde el layout."); 
+        const wrapper = document.getElementById('weather-cards-display');
+        
+        if (!wrapper) {
+            console.error("⛔ ERROR: Contenedor 'weather-cards-display' no encontrado. (Revisa el ID en clima.html)"); 
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/clima/pronostico/${PASO_ID}`); 
+            const forecastData = await response.json();
+            
+            if (response.ok && forecastData && forecastData.length > 0) {
+                const cardsHtml = forecastData.map(createWeatherCard).join('');
+                wrapper.innerHTML = cardsHtml;
+            } else {
+                 wrapper.innerHTML = '<p>No hay pronósticos disponibles (404 o lista vacía).</p>';
+            }
+            
+        } catch (error) {
+            console.error('⛔ FATAL ERROR:', error);
+            wrapper.innerHTML = '<p>Ocurrió un error al cargar el clima. Intente más tarde.</p>';
+        }
+    }
+
+    // Llama a la función DESPUÉS de un pequeño retardo para asegurar que el DOM cargue
+    setTimeout(fetchWeatherForecast, 100); 
+
+</script>
+</body>

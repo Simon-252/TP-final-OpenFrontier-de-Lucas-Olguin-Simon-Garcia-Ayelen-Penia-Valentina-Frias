@@ -1,68 +1,63 @@
-// static/js/theme_handler.js
+// static/js/theme_handler.js - CÓDIGO CORREGIDO
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('theme-toggle');
     const body = document.body;
     
-    // Elementos adicionales que necesitan la clase .dark-mode
+    // Elementos adicionales que necesitan la clase .dark-mode (usados si el CSS no cubre la herencia)
     const nav = document.getElementById('bottom-nav');
     const infoContainer = document.getElementById('pass-info-container');
     const mainContent = document.querySelector('main');
-    const navButtons = document.querySelectorAll('.nav-button');
-
-    // 1. Función para aplicar el tema
-    function applyTheme(isDark) {
-        if (isDark) {
-            body.classList.add('dark-mode');
-            nav.classList.add('dark-mode');
-            if (infoContainer) infoContainer.classList.add('dark-mode');
-            if (mainContent) mainContent.classList.add('dark-mode');
-            navButtons.forEach(btn => btn.classList.add('dark-mode'));
-            toggleButton.innerText = 'Modo Claro';
-            localStorage.setItem('theme', 'dark');
-        } else {
-            body.classList.remove('dark-mode');
-            nav.classList.remove('dark-mode');
-            if (infoContainer) infoContainer.classList.remove('dark-mode');
-            if (mainContent) mainContent.classList.remove('dark-mode');
-            navButtons.forEach(btn => btn.classList.remove('dark-mode'));
-            toggleButton.innerText = 'Modo Oscuro';
-            localStorage.setItem('theme', 'light');
-        }
-    }
-
-    // 1. Función para aplicar el tema
-    function applyTheme(isDark) {
-        if (isDark) {
-            body.classList.add('dark-mode');
-            nav.classList.add('dark-mode');
-            infoContainer.classList.add('dark-mode');
-            navButtons.forEach(btn => btn.classList.add('dark-mode'));
-            toggleButton.innerText = 'Modo Claro';
-            localStorage.setItem('theme', 'dark');
-        } else {
-            body.classList.remove('dark-mode');
-            nav.classList.remove('dark-mode');
-            infoContainer.classList.remove('dark-mode');
-            navButtons.forEach(btn => btn.classList.remove('dark-mode'));
-            toggleButton.innerText = 'Modo Oscuro';
-            localStorage.setItem('theme', 'light');
-        }
-    }
-
-    // 2. Cargar el tema guardado al inicio (se aplica en todas las páginas)
-    const savedTheme = localStorage.getItem('theme');
     
-    // Si no hay tema guardado, comprueba la preferencia del sistema
+    // 🔑 CORRECCIÓN: Buscamos el <i> directamente, ya que es el hijo del botón
+    const themeIcon = toggleButton ? toggleButton.querySelector('i') : null;
+
+    // 1. Función para aplicar el tema y el ICONO
+    function applyTheme(isDark) {
+        if (!themeIcon) {
+            console.error("Ícono de tema no encontrado. El botón no funcionará.");
+            return;
+        }
+
+        // Si el CSS usa variables en :root y body.dark-mode, estos pasos son opcionales
+        // Pero los mantenemos por si el CSS necesita estas clases explícitas.
+        if (isDark) {
+            // Aplicar clases de modo oscuro
+            body.classList.add('dark-mode');
+            nav.classList.add('dark-mode');
+            // Nota: En CSS puro, body.dark-mode ya debería cambiar todo.
+            
+            // 🔑 LÓGICA DEL ÍCONO: Si estamos en modo OSCURO, mostramos el SOL (para cambiar a CLARO)
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            
+            localStorage.setItem('theme', 'dark');
+            
+        } else {
+            // Eliminar clases de modo oscuro (Modo Claro)
+            body.classList.remove('dark-mode');
+            nav.classList.remove('dark-mode');
+            
+            // 🔑 LÓGICA DEL ÍCONO: Si estamos en modo CLARO, mostramos la LUNA (para cambiar a OSCURO)
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // 2. Cargar el tema guardado al inicio
+    const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if (savedTheme) {
+    if (savedTheme !== null) {
+        // Usar la preferencia guardada
         applyTheme(savedTheme === 'dark');
     } else if (prefersDark) {
-        // Aplica el modo oscuro si el sistema lo prefiere, pero no lo guarda aún
+        // Usar la preferencia del sistema (modo oscuro)
         applyTheme(true); 
     } else {
-        // Aplica el modo claro por defecto
+        // Usar modo claro por defecto
         applyTheme(false); 
     }
 
@@ -70,9 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Listener para el botón de toggle
     if (toggleButton) {
         toggleButton.addEventListener('click', () => {
-            const currentTheme = localStorage.getItem('theme');
-            const newThemeIsDark = (currentTheme === 'light' || !currentTheme) ? true : false;
-            applyTheme(newThemeIsDark);
+            // Obtiene el estado actual del body
+            const isCurrentlyDark = body.classList.contains('dark-mode');
+            
+            // Aplica el tema opuesto
+            applyTheme(!isCurrentlyDark); 
         });
+    } else {
+        console.error("Error: El botón de tema (theme-toggle) no se encontró en el DOM.");
     }
 });

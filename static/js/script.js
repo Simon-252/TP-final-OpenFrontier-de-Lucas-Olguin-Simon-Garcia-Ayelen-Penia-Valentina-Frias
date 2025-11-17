@@ -50,49 +50,50 @@ document.getElementById("logoutBtn")?.addEventListener("click", async () => {
 });
 // ---------------- Login ----------------
 document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const data = {
-    email: form.email.value,
-    password: form.password.value
-  };
+ e.preventDefault();
+ const form = e.target;
+ const data = {
+    email: form.email.value,
+    password: form.password.value
+ };
 
-  // Asumo que 'safeFetch' apunta a tu API de login, por ejemplo, '/api/login' o similar
-  // Si tu ruta de login es '/login' en Flask, esto es correcto si se maneja como API.
-  const res = await fetch("/api/auth/login", { 
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
+ // Asumo que 'safeFetch' apunta a tu API de login, por ejemplo, '/api/login' o similar
+ // Si tu ruta de login es '/login' en Flask, esto es correcto si se maneja como API.
+ const res = await fetch("/api/auth/login", { 
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+ });
 
-  if (!res) {
-    alert("Error de red. Intenta nuevamente.");
-    return;
-  }
+ if (!res) {
+    alert("Error de red. Intenta nuevamente.");
+    return;
+ }
 
-  if (res.ok) {
-    const result = await res.json();
-    
-    // 1. Guardar datos importantes
-    localStorage.setItem("token", result.token);
-    // Guarda el rol para la redirección (y uso posterior)
-    const userRole = result.role || "user"; 
-    localStorage.setItem("role", userRole);
-    localStorage.setItem("username", result.username || "");
-    
-    // Intentar obtener pasoId inmediatamente (opcional)
-    try {
-      const pasoRes = await fetch("/paso/api", {
-        headers: { Authorization: "Bearer " + result.token }
-      });
-      if (pasoRes.ok) {
-        const paso = await pasoRes.json();
-        if (paso.id) localStorage.setItem("pasoId", paso.id);
-      }
-    } catch (err) {
-      // no bloquear login si falla
-      console.debug("No se pudo obtener pasoId post-login:", err);
-    }
+ if (res.ok) {
+    const result = await res.json();
+      
+    // 1. Guardar datos importantes
+    localStorage.setItem("token", result.token);
+    // Guarda el rol para la redirección (y uso posterior)
+    const userRole = result.role || "user"; 
+    localStorage.setItem("role", userRole);
+    localStorage.setItem("username", result.username || "");
+    localStorage.setItem("user_role", userRole);
+      
+    // Intentar obtener pasoId inmediatamente (opcional)
+    try {
+     const pasoRes = await fetch("/paso/api", {
+        headers: { Authorization: "Bearer " + result.token }
+     });
+     if (pasoRes.ok) {
+        const paso = await pasoRes.json();
+        if (paso.id) localStorage.setItem("pasoId", paso.id);
+     }
+    } catch (err) {
+     // no bloquear login si falla
+     console.debug("No se pudo obtener pasoId post-login:", err);
+    }
     
     // 2. LÓGICA DE REDIRECCIÓN CONDICIONAL
     if (userRole === 'admin') {
@@ -103,10 +104,10 @@ document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
         window.location.href = "/"; 
     }
 
-  } else {
-    const err = await res.json().catch(() => ({}));
-    alert(err.message || "Credenciales inválidas");
-  }
+ } else {
+    const err = await res.json().catch(() => ({}));
+    alert(err.message || "Credenciales inválidas");
+ }
 });
 
 // ---------------- Register ----------------

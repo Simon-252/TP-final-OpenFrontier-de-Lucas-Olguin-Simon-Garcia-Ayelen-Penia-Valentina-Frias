@@ -1,128 +1,619 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenFrontier</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/layout.css')}}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenFrontier - Paso Cristo Redentor</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/layout.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-extra-markers/1.2.1/css/leaflet.extra-markers.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    
-    <div class="main-container">
-        
-        <div id="image-container">
-            <img id="pass-image" src="{{ url_for('static', filename='images/default_pass.jpg') }}" alt="Ubicación del Paso">
-        </div>
-        
-        <div id="pass-status-container">
-            <h2 id="pass-status-text" class="status-loading">Cargando Estado...</h2>
-        </div>
-        <div id="pass-info-container"> 
-            <p id="pass-schedule" class="info-text">Horario de atención: N/A</p>
-            <p id="pass-updated-time" class="info-text">Última Actualización: N/A</p>
-        </div>
+    <nav id="top-nav">
 
-                <main>
-            {% block content %}
-            {% endblock %}
-        </main>
-                <div class="footer-info">
-            <h3>De Simon Garcia - Ayelen Peña - Lucas Olguin - Valentina Frias</h3>
-            <p><a href="{{ url_for('about.about_page') }}">Sobre este proyecto</a></p>
-        </div>
+        <div class="logo-container">
 
-    </div>
+               <a href="{{ url_for('index') }}" class="nav-logo-text">OPEN FRONTIER</a> 	
 
-    <nav id="bottom-nav">
-        <div id="unauthenticated-options">
-            <a href="/login" class="nav-button">Iniciar Sesión</a>
-            <a href="/register" class="nav-button">Registrarse</a>
-                
-        </div>
+        </div>
 
-        <button id="theme-toggle" class="nav-button">
-            Modo Oscuro
-        </button>
+        <div id="top-auth-options">
 
-        <div id="authenticated-options" style="display: none;"> 
-            <a href="/mapa" class="nav-button">Ver Mapa</a>
-            <a href="/notifications" class="nav-button">Notificaciones</a>
-            <a href="/profile" class="nav-button">Perfil</a>
-            <a href="/dashboard" id="admin-dashboard-link" class="nav-button" style="display:none;">Lista de Usuarios</a>
-            <a href="https://www.argentina.gob.ar/interior/migraciones/entrada-y-salida-del-pais"
-                target="_blank"
-                class="nav-button nav-docs">
-                Documentación para cruzar
-                </a>
-            <button id="logoutBtn" class="nav-button button-danger">Cerrar sesión</button>
+               <div id="unauthenticated-options">
 
-        </div>
-    </nav>
-    
-    <script src="{{ url_for('static', filename='js/nav_handler.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/theme_handler.js') }}"></script>
-    
-    <script>
-        // CÓDIGO DE FETCCH STATUS
-        const passStatusText = document.getElementById('pass-status-text');
-        const passImage = document.getElementById('pass-image');
-        const passSchedule = document.getElementById('pass-schedule');
-        const passUpdatedTime = document.getElementById('pass-updated-time');
-        
-        // Función para cambiar clases y colores según el estado
-        function updateStatusDisplay(estado) {
-            passStatusText.className = ''; // Limpia todas las clases
-            let colorClass = 'status-default'; 
-            
-            if (estado.toLowerCase().includes('abierto') || estado.toLowerCase().includes('habilitado')) {
-                colorClass = 'status-success'; // Clase para verde/éxito
-            } else if (estado.toLowerCase().includes('cerrado')) {
-                colorClass = 'status-danger'; // Clase para rojo/peligro
-            } else if (estado.toLowerCase().includes('desconocido') || estado.toLowerCase().includes('error')) {
-                colorClass = 'status-warning'; // Clase para amarillo/advertencia
-            }
-            passStatusText.classList.add(colorClass);
-        }
+               <a href="{{ url_for('auth.login_page') }}" class="nav-button top-button">Iniciar Sesión</a>
+               <a href="{{ url_for('auth.register_page') }}" class="nav-button top-button">Registrarse</a>
 
-        // Función principal para obtener los datos
-        function fetchPassStatus() {
-            // Llama al endpoint público que no requiere autenticación
-            fetch('/paso/public_api')
-                .then(res => res.json())
-                .then(data => {
-                    // 1. Mostrar el ESTADO
-                    passStatusText.innerText = `Paso ${data.estado}`;
-                    updateStatusDisplay(data.estado);
-                    
-                    // 2. Mostrar HORARIO (usando horario_atencion)
-                    const horario = data.horario_atencion || data.horario || 'N/A'; 
-                    passSchedule.innerText = `Horario de atención: ${horario}`;
+               </div>
 
-                    // 3. Mostrar TIEMPO DE ACTUALIZACIÓN (usando actualizado)
-                    // Nota: Asumimos que data.actualizado ya trae el texto "Actualizado hace..."
-                    passUpdatedTime.innerText = `Última Actualización: ${data.actualizado}`;
-                    
-                    // 4. Cambiar la IMAGEN
-                    const imageUrl = `{{ url_for('static', filename='images/${data.image_filename}') }}`;
-                    passImage.src = imageUrl;
+               <div id="authenticated-options" style="display: none;">
 
-                })
-                .catch(err => {
-                    console.error("Error al obtener estado del paso:", err);
-                    passStatusText.innerText = "Error al conectar con la API.";
-                    updateStatusDisplay("Error");
-                    passSchedule.innerText = 'Horario de atención: No disponible';
-                    passUpdatedTime.innerText = 'Última Actualización: No disponible';
-                });
-        }
-        
-        // Ejecutar la función al cargar la página
-        fetchPassStatus();
-        
-        // Opcional: Actualizar el estado cada 5 minutos
-        // setInterval(fetchPassStatus, 300000); 
-        
-    </script>
-<script src="{{ url_for('static', filename='js/logout_handler.js') }}"></script>
+               <a href="{{ url_for('notifications_page') }}" class="nav-button top-button" title="Notificaciones">
+
+                    <i class="fas fa-bell"></i>
+
+               </a>
+
+               <a href="{{ url_for('profile.view_profile_page') }}" class="nav-button top-button" title="Mi Perfil">
+
+                    <i class="fas fa-user-circle"></i>
+
+               </a>
+
+               <a id="admin-dashboard-link" href="{{ url_for('auth.dashboard_page') }}" class="nav-button top-button admin-button" title="Administración" style="display: none;">
+
+                    <i class="fas fa-users-cog"></i>
+
+               </a>
+
+               <button id="logoutBtn" class="nav-button button-danger top-button" title="Cerrar Sesión">
+
+                    Cerrar Sesión
+
+               </button>
+
+               </div>
+
+        </div>
+
+    </nav>
+
+    <div id="image-container">
+
+        <div id="image-overlay-text">
+               <p class="overlay-title">PASO CRISTO REDENTOR</p>
+               <p class="overlay-subtitle">Tú frontera segura de la cordillera</p>
+        </div>
+        <img id="pass-image" src="{{ url_for('static', filename='images/default_pass.jpg') }}" alt="Ubicación del Paso">
+
+    </div>
+
+    <div class="main-container">
+
+        <div id="central-info-card">
+
+               <div id="pass-status-container" class="status-loading">
+               <h2 id="pass-status-text">CARGANDO</h2>
+               </div>
+        </div>
+
+        <div id="pass-info-container">
+
+               <div id="pass-info-content">
+               <p class="info-line"><i class="fas fa-clock"></i> <span id="pass-schedule">Horario de atención: N/A</span></p>
+               <p class="info-line"><i class="fas fa-phone-alt"></i> Contacto: <span id="pass-contact">N/A</span></p>
+               <p class="info-line sub-detail">Provincia: <span id="pass-province">Mendoza</span></p>
+               <p class="info-line sub-detail">País Limítrofe: <span id="pass-country">Chile</span></p>
+               <p class="info-line update-time"><i class="fas fa-history"></i> <span id="pass-updated-time">Última Actualización: N/A</span></p>
+               </div>
+
+        </div>
+
+        <div id="weather-section" class="main-content-section">
+
+               <h2 class="section-title" id="clima">CLIMA</h2>
+
+               <div id="weather-carousel-wrapper">
+
+               <i class="fas fa-chevron-left weather-arrow" id="prev-weather" style="display:none;"></i>
+
+               <div id="weather-cards-container">
+
+               <div id="weather-loading-message">Cargando pronóstico...</div>
+
+               </div>
+
+               <i class="fas fa-chevron-right weather-arrow" id="next-weather" style="display:none;"></i>
+
+               </div>
+
+        </div>
+
+        <div id="map-section" class="main-content-section">
+
+               <h2 class="section-title" id="mapa">MAPA</h2>
+
+               <div id="map-controls">
+
+               <h3 class="map-subtitle">Mapa de Mendoza a Santiago de Chile</h3>
+
+               <div id="map-checkboxes">
+                    <label class="map-filter-label">
+                        <input type="checkbox" id="check-alojamientos" checked>
+                        <i class="fas fa-bed"></i> Alojamientos
+                    </label>
+                    
+                    <label class="map-filter-label">
+                        <input type="checkbox" id="check-puntos-fijos" checked>
+                        <i class="fas fa-map-marker-alt"></i> Puntos de interes
+                    </label>
+
+                    <label class="map-filter-label">
+
+                    <input type="checkbox" id="check-playas" checked>
+
+                    <i class="fas fa-parking"></i> Estacionamientos
+
+                    </label>
+
+                    <label class="map-filter-label">
+
+                    <input type="checkbox" id="check-servicios" checked>
+
+                    <i class="fas fa-utensils"></i> Servicios
+
+                    </label>
+
+                    <label class="map-filter-label">
+
+                    <input type="checkbox" id="check-incidentes" checked>
+
+                    <i class="fas fa-exclamation-triangle"></i> Incidentes
+
+                    </label>
+
+               </div>
+
+               </div>
+
+               <div id="mapa_leaflet"></div>
+
+               <p class="map-report-text" id="unauthenticated-report-prompt">
+
+               ¿Sucedió algo? Por favor regístrate <a href="/register">aquí</a> e infórmanos.
+
+               </p>
+
+        </div>
+
+    </div>
+
+    <nav id="bottom-nav">
+
+        <div id="unauthenticated-options">
+
+               <a href="#mapa" class="nav-button scroll-nav">Mapa</a>
+               <a href="#clima" class="nav-button scroll-nav">Clima</a>
+               <a href="/about" class="nav-button">Conócenos</a>
+               <a href="https://www.argentina.gob.ar/interior/migraciones/entrada-y-salida-del-pais" target="_blank" class="nav-button nav-docs">Doc. necesaria</a>
+
+        </div>
+
+        <div id="authenticated-options" style="display: none;">
+               <a href="#mapa" class="nav-button scroll-nav">Mapa</a>
+               <a href="#clima" class="nav-button scroll-nav">Clima</a>
+               <a href="/about" class="nav-button">Conócenos</a>
+               <a href="https://www.argentina.gob.ar/interior/migraciones/entrada-y-salida-del-pais" target="_blank" class="nav-button nav-docs">Doc. necesaria</a>
+
+        </div>
+
+    </nav>
+
+    <button id="theme-toggle" class="floating-theme-button">
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <button id="report-incident-btn" class="button-incident">
+        Reportar Suceso
+    </button>
+
+    <script src="{{ url_for('static', filename='js/nav_handler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/theme_handler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/logout_handler.js') }}"></script>
+
+    {% block scripts %}
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-extra-markers/1.2.1/js/leaflet.extra-markers.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // Coordenadas globales (Los Libertadores)
+        const Global_LAT = -32.825;
+        const Global_LNG = -70.049;
+        const INICIAL_ZOOM = 13;
+        const POI_FILE = '{{ url_for("static", filename="data/puntos_interes.json") }}';
+
+        // 1. DEFINICIÓN DEL MAPA DE COLORES, ICONOS Y CAPAS
+        const POI_CONFIG = {
+            // NUEVA CAPA 1: Alojamientos (Checkbox ID: check-alojamientos)
+            'hotel': { color: 'blue-dark', faIcon: 'fa-bed', layer: 'alojamientos' },
+            'posada': { color: 'blue-dark', faIcon: 'fa-bed', layer: 'alojamientos' },
+
+            // CAPA 2: Puntos Fijos (Checkbox ID: check-puntos-fijos)
+            // Se han reasignado los POIs no-alojamiento a la nueva capa 'puntos_fijos'
+            'frontera': { color: 'green', faIcon: 'fa-landmark', layer: 'puntos_fijos' },
+            'peaje_control': { color: 'green', faIcon: 'fa-road', layer: 'puntos_fijos' },
+            'río_montaña': { color: 'cyan', faIcon: 'fa-mountain', layer: 'puntos_fijos' },
+            'monumento': { color: 'purple', faIcon: 'fa-monument', layer: 'puntos_fijos' },
+            
+            // CAPA 3: Servicios (Checkbox ID: check-servicios)
+            'restaurante': { color: 'red', faIcon: 'fa-utensils', layer: 'servicios' },
+            'tienda_regalos': { color: 'yellow', faIcon: 'fa-gift', layer: 'servicios' },
+            'servicio_turistico': { color: 'yellow', faIcon: 'fa-caravan', layer: 'servicios' },
+            'servicios_generales': { color: 'yellow', faIcon: 'fa-gas-pump', layer: 'servicios' },
+            
+            // CAPA 4: Estacionamientos (Checkbox ID: check-playas)
+            'estacionamiento': { color: 'orange', faIcon: 'fa-parking', layer: 'playas' },
+            
+            // CAPA 5: Incidentes (Checkbox ID: check-incidentes)
+            'incidente': { color: 'black', faIcon: 'fa-exclamation-triangle', layer: 'incidentes' },
+            
+            'default': { color: 'gray', faIcon: 'fa-question', layer: 'puntos_fijos' } // Asignamos el default a la nueva capa
+        };
+
+        const markerLayers = {};
+        let map;
+
+        function initMap() {
+
+            // Revisa si las librerías se cargaron (ahora deberían hacerlo sin bloqueo)
+            if (document.getElementById('mapa_leaflet') && typeof L !== 'undefined' && typeof L.ExtraMarkers !== 'undefined') {
+
+                map = L.map('mapa_leaflet').setView([Global_LAT, Global_LNG], INICIAL_ZOOM);
+
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+
+                // CREACIÓN DE LAS NUEVAS CAPAS DE LayerGroups
+                markerLayers.alojamientos = L.layerGroup().addTo(map); // <--- NUEVA CAPA
+                markerLayers.puntos_fijos = L.layerGroup().addTo(map); // <--- NOMBRE ACTUALIZADO
+                markerLayers.playas = L.layerGroup().addTo(map); 
+                markerLayers.servicios = L.layerGroup().addTo(map);
+                markerLayers.incidentes = L.layerGroup().addTo(map);
+
+                function addMarkers(pointsOfInterest) {
+
+                    pointsOfInterest.forEach(poi => {
+
+                        const iconKey = poi.iconType ? poi.iconType.toLowerCase() : 'default';
+                        const config = POI_CONFIG[iconKey] || POI_CONFIG.default;
+    
+                        // Creación del icono ExtraMarkers
+                        const customIcon = L.ExtraMarkers.icon({
+                            icon: config.faIcon,
+                            iconColor: 'white',
+                            markerColor: config.color,
+                            shape: 'circle',
+                            prefix: 'fas'
+                        });
+
+                        // Obtención de la capa de destino
+                        const layerName = config.layer;
+                        const marker = L.marker([poi.lat, poi.lng], { icon: customIcon });
+                        marker.bindPopup(`<b>${poi.name}</b><br>${poi.address}<br><i>Tipo: ${poi.iconType}</i>`);
+
+                        // Añadir el marcador a la capa correcta
+                        if (markerLayers[layerName]) {
+                            markerLayers[layerName].addLayer(marker);
+                        }
+
+                    });
+
+                }
+
+    
+                // Carga del JSON de POI
+                fetch(POI_FILE)
+                    .then(response => {
+                        if (!response.ok) throw new Error('No se pudo cargar el JSON de POI');
+                        return response.json();
+                    })
+                    .then(data => {
+                        addMarkers(data);
+                    })
+                    .catch(error => {
+                        console.error("Error al cargar los POI:", error);
+                    });
+
+    
+                // Event Listener para los checkboxes
+                document.getElementById('map-checkboxes').addEventListener('change', (e) => {
+                    const layerId = e.target.id;
+                    const isChecked = e.target.checked;
+
+                    let layerName;
+
+                    // Mapeo del ID del checkbox al nombre de la capa (ACTUALIZADO)
+                    if (layerId === 'check-alojamientos') {
+                        layerName = 'alojamientos';
+                    } else if (layerId === 'check-puntos-fijos') { // Nombre del ID anterior era check-hoteles
+                        layerName = 'puntos_fijos';
+                    } else if (layerId === 'check-playas') {
+                        layerName = 'playas';
+                    } else if (layerId === 'check-servicios') {
+                        layerName = 'servicios';
+                    } else if (layerId === 'check-incidentes') {
+                        layerName = 'incidentes';
+                    }
+
+                    if (layerName && markerLayers[layerName]) {
+                        if (isChecked) {
+                            map.addLayer(markerLayers[layerName]);
+                        } else {
+                            map.removeLayer(markerLayers[layerName]);
+                        }
+                    }
+                });
+
+                map.invalidateSize();
+
+            } else {
+
+                console.error("Leaflet o Leaflet.ExtraMarkers no están definidos. Falla en la carga de librerías.");
+
+            }
+
+        }
+
+        window.addEventListener('load', initMap);
+
+    </script>
+
+
+    <script>
+        // --- CÓDIGO PARA ESTADO DEL PASO Y CLIMA ---
+
+        let currentPassId = null;
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const passStatusText = document.getElementById('pass-status-text');
+            const passImage = document.getElementById('pass-image');
+            const passSchedule = document.getElementById('pass-schedule');
+            const passUpdatedTime = document.getElementById('pass-updated-time');
+            const passContact = document.getElementById('pass-contact');
+            const centralInfoCard = document.getElementById('central-info-card');
+            const weatherContainer = document.getElementById('weather-cards-container');
+            const prevArrow = document.getElementById('prev-weather');
+            const nextArrow = document.getElementById('next-weather');
+
+            function updateStatusDisplay(estado) {
+                centralInfoCard.classList.remove('status-success', 'status-danger', 'status-warning');
+                let colorClass = 'status-warning';
+
+                if (estado.toLowerCase().includes('abierto') || estado.toLowerCase().includes('habilitado')) {
+
+                    colorClass = 'status-success';
+
+                } else if (estado.toLowerCase().includes('cerrado')) {
+
+                    colorClass = 'status-danger';
+
+                } else if (estado.toLowerCase().includes('desconocido') || estado.toLowerCase().includes('error') || estado.toLowerCase().includes('cargando')) {
+
+                    colorClass = 'status-warning';
+
+                }
+
+                centralInfoCard.classList.add(colorClass);
+
+            }
+
+            function fetchPassStatus() {
+
+                passStatusText.innerText = `CARGANDO`;
+
+                updateStatusDisplay("Cargando");
+
+                fetch('/paso/public_api')
+
+                    .then(res => res.json())
+
+                    .then(data => {
+
+                        currentPassId = data.id;
+
+                        passStatusText.innerText = data.estado.toUpperCase();
+
+                        updateStatusDisplay(data.estado);
+
+                        const horario = data.horario_atencion || data.horario || 'N/A';
+
+                        passSchedule.innerText = `Horario de atención: ${horario}`;
+
+                        passContact.innerText = data.contacto || '2624 420094';
+
+                        passUpdatedTime.innerText = data.actualizado || 'No disponible';
+
+                        const imageFilename = data.image_filename || 'default_pass.jpg';
+
+                        const imageUrl = `/static/images/${imageFilename}`;
+
+                        passImage.src = imageUrl;
+
+                        if (currentPassId) {
+
+                        fetchWeather(currentPassId);
+
+                        } else {
+
+                        weatherContainer.innerHTML = `<div class="weather-error">No se pudo obtener el ID del paso para cargar el clima.</div>`;
+
+                        }
+
+                    })
+
+                    .catch(err => {
+
+                        console.error("Error al obtener estado del paso:", err);
+
+                        passStatusText.innerText = "ERROR DE CONEXIÓN";
+
+                        updateStatusDisplay("Error");
+
+                        passSchedule.innerText = 'No disponible';
+
+                        passContact.innerText = 'N/A';
+
+                        passUpdatedTime.innerText = 'No disponible';
+
+                        weatherContainer.innerHTML = `<div class="weather-error">No se pudo obtener el ID del paso para cargar el clima.</div>`;
+
+                    });
+
+            }
+
+            function getDayOfWeek(dateString) {
+
+                const date = new Date(dateString);
+
+                date.setDate(date.getDate() + 1);
+
+                const options = { weekday: 'long' };
+
+                return date.toLocaleDateString('es-ES', options).toUpperCase();
+
+            }
+
+            function fetchWeather(pasoId) {
+
+                weatherContainer.innerHTML = `<div id="weather-loading-message">Cargando pronóstico...</div>`;
+
+                fetch(`/api/clima/pronostico/${pasoId}`)
+
+                    .then(res => {
+
+                        if (res.status === 404) {
+
+                        throw new Error('No hay pronósticos registrados para este paso.');
+
+                        }
+
+                        if (!res.ok) {
+
+                        throw new Error('Error de servidor al cargar el clima. Status: ' + res.status);
+
+                        }
+
+                        return res.json();
+
+                    })
+
+                    .then(data => {
+
+                        weatherContainer.innerHTML = '';
+
+                        if (!data || data.length === 0) {
+
+                        weatherContainer.innerHTML = `<div class="weather-error">No se encontraron datos de pronóstico.</div>`;
+
+                        return;
+
+                        }
+
+                        data.forEach((day, index) => {
+
+                        const dayName = getDayOfWeek(day.fecha_pronostico);
+
+                        const card = document.createElement('div');
+
+                        card.classList.add('weather-card');
+
+                        card.innerHTML = `
+
+                            <div class="weather-day">${dayName}</div>
+
+                            <div class="weather-icon-placeholder"><i class="fas fa-cloud-sun"></i></div>
+
+                            <div class="weather-temp">Min/Max: ${day.temp_min}° / ${day.temp_max}°</div>
+
+                            <div class="weather-description">${day.descripcion || 'Condiciones no detalladas'}</div>
+
+                            <div class="weather-details">
+
+                                <p>Viento: ${day.viento_velocidad_kmh} Km/h (${day.viento_direccion})</p>
+
+                                <p>Visibilidad: ${day.visibilidad_metros} Mts</p>
+
+                            </div>
+
+                        `;
+
+                        weatherContainer.appendChild(card);
+
+                        });
+
+                        updateArrowVisibility();
+
+                    })
+
+                    .catch(err => {
+
+                        console.error("Error al obtener pronóstico:", err);
+
+                        weatherContainer.innerHTML = `<div class="weather-error">Fallo al conectar con la API de clima: ${err.message}.</div>`;
+
+                    });
+
+            }
+
+            function scrollCards(direction) {
+
+                const firstCard = weatherContainer.querySelector('.weather-card');
+
+                if (!firstCard) return;
+
+                const scrollAmount = firstCard.offsetWidth + 15;
+
+                weatherContainer.scrollBy({
+
+                    left: direction * scrollAmount,
+
+                    behavior: 'smooth'
+
+                });
+
+                setTimeout(updateArrowVisibility, 400);
+
+            }
+
+            function updateArrowVisibility() {
+
+                if (weatherContainer.scrollWidth <= weatherContainer.clientWidth + 5) {
+
+                    prevArrow.style.display = 'none';
+
+                    nextArrow.style.display = 'none';
+
+                    return;
+
+                }
+
+                prevArrow.style.display = 'flex';
+
+                nextArrow.style.display = 'flex';
+
+                if (weatherContainer.scrollLeft <= 5) {
+
+                    prevArrow.style.display = 'none';
+
+                }
+
+                const maxScrollLeft = weatherContainer.scrollWidth - weatherContainer.clientWidth;
+
+                if (weatherContainer.scrollLeft >= maxScrollLeft - 5) {
+
+                    nextArrow.style.display = 'none';
+
+                }
+
+            }
+
+            prevArrow.addEventListener('click', () => scrollCards(-1));
+
+            nextArrow.addEventListener('click', () => scrollCards(1));
+
+            weatherContainer.addEventListener('scroll', updateArrowVisibility);
+
+            fetchPassStatus();
+
+        });
+    </script>
+    {% endblock %}
 </body>
 </html>
